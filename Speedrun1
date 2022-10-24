@@ -10,7 +10,7 @@ b=true
 end
 oo=true
 firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to HIDE","Stop Hiding"})
-game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health -1
+game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health -0.122
 else
 oo=false
 end
