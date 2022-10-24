@@ -19,7 +19,7 @@ b=true
 oo=false
 end)
 firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to Speedrun","Run to The door as Quick as you can","Or hide But not too Long"})
-                    game.ReplicatedStorage.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "Speedrun"
+  game.ReplicatedStorage.GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Speedrun"
          
 
                 
