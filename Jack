@@ -1,6 +1,44 @@
-local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
+local config={
+    Image="http://www.roblox.com/asset/?id=11388995838", -- Could also be "image.png"
+    Sound="rbxassetid://11350126934", -- Could also be "file.mp3"
+    EntityName="Jack" -- Make sure to change if you mod the image/sound to prevent overlapping
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local ReSt = game:GetService("ReplicatedStorage")
-local config={EntityName="jackasfasdfgadgaasfasfasfasfdsg"}
 
 local ModuleScripts = {
     ModuleEvents = require(ReSt.ClientModules.Module_Events),
@@ -14,13 +52,14 @@ local function connectClosetJack(wardrobes, room, bool)
             anim.Name="closetAnim"
             anim.Parent=game:GetService("ReplicatedStorage")
         end
-        if game:GetService("ReplicatedStorage"):FindFirstChild("JackModel") then
-        	game:GetService("ReplicatedStorage"):FindFirstChild("JackModel"):Destroy()
-		end
-            local a=game:GetObjects(getcustomasset("jacklol.rbxm"))[1]
+        if not game:GetService("ReplicatedStorage"):FindFirstChild("JackModel") then
+            if not isfile(config.EntityName..".txt") then writefile(config.EntityName..".txt", game:HttpGet("https://github.com/sponguss/storage/raw/real/newclosetjack.rbxm?raw=true")) end
+            local a=game:GetObjects((getcustomasset or getsynasset)(config.EntityName..".txt"))[1]
             a.Name="JackModel"
             a.Parent=game:GetService("ReplicatedStorage")
-
+        end
+        game:GetService("ReplicatedStorage").JackModel.Sound.SoundId=(isfile(config.Sound) and (getcustomasset or getsynasset)(config.Sound) or config.Sound)
+        game:GetService("ReplicatedStorage").JackModel.Gui.ImageLabel.Image=(isfile(config.Image) and (getcustomasset or getsynasset)(config.Image) or config.Image)
         local prompt = wardrobe:WaitForChild("HidePrompt", 1)
         if not prompt and wardrobe:FindFirstChild("fakePrompt") then return end
     
@@ -46,13 +85,13 @@ local function connectClosetJack(wardrobes, room, bool)
     
                     -- Scare
                     
-                    ModuleScripts.ModuleEvents.flickerLights(room, 1.664)
+                    ModuleScripts.ModuleEvents.flickerLights(room, 1)
                     anim:Play()
                     model.Sound:Play()
     
                     -- Destroy
     
-                    task.wait(1.664)
+                    task.wait(1)
                     
                     model:Destroy()
                     if not bool then prompt.Enabled = true end
@@ -66,12 +105,12 @@ local function connectClosetJack(wardrobes, room, bool)
 end
 
 local wardrobes = {}
-for _, wardrobe in pairs(workspace.CurrentRooms[LatestRoom.Value].Assets:GetChildren()) do
-    if wardrobe.Name== "Wardrobe" then
+for _, wardrobe in pairs(workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")].Assets:GetChildren()) do
+    if wardrobe.Name=="Wardrobe" then
         table.insert(wardrobes, wardrobe)
     end
 end
 
 if wardrobes[1] then
-    connectClosetJack(wardrobes, workspace.CurrentRooms[LatestRoom.Value], true) -- 'true' for jack to appear every time
+    connectClosetJack(wardrobes, workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")], false) -- 'true' for jack to appear every time
 end
