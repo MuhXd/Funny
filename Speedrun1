@@ -15,7 +15,7 @@ end
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
 b=true
 oo=false
-loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/Funny/main/Jack'))()
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/Funny/main/Jack'))()
 end)
 
          
