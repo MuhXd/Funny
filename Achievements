@@ -67,7 +67,7 @@ else
     Write=Write.." "..v
     end
     end
-    if StopFinding = true then
+    if StopFinding == true then
     Write=FindPop2
     end
 appendfile(filePath,Write.."|")
