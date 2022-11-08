@@ -34,6 +34,7 @@ local read2 = string.split(read,"|")
      FOUND = false
      Find = ""
 for i,v in pairs(Achievement) do
+print(i)
     Find=Find.." "..v
 end
 
