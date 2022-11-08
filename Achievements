@@ -38,6 +38,7 @@ local read2 = string.split(read,"|")
      Find = ""
      FindPop=""
 StopFinding = false
+
 for i,v in pairs(Achievement) do
 if not i == Title or i == Reason or i == Image then
 StopFinding = true
@@ -46,7 +47,7 @@ else
     Find=Find.." "..v
 end
 end
-
+read2 = string.split(read2,"#")
     for i,v in pairs(read2) do
     if StopFinding == true then
     if v == FindPop then
@@ -71,7 +72,8 @@ else
     end
     end
     if StopFinding == true then
-    Write=FindPop2
+    Write12=Write
+    Write=FindPop2.."#( "..Write12..")#"
     end
 appendfile(filePath,Write.."|")
 end
