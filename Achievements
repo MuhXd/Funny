@@ -33,21 +33,42 @@ local read2 = tostring(read)
 local read2 = string.split(read,"|")
      FOUND = false
      Find = ""
+     FindPop=""
+StopFinding = false
 for i,v in pairs(Achievement) do
-print(i)
+if not i == Title or i == Reason or i == Image then
+StopFinding = true
+FindPop=FindPop.." "..v
+else
     Find=Find.." "..v
+end
 end
 
     for i,v in pairs(read2) do
+    if StopFinding == true then
+    if v == FindPop then
+    FOUND = true
+    end
+    else
     if v == Find then
     FOUND = true
     end
+end
 end 
 if FOUND == false then
 Achievements.Get(Achievement)
 Write = ""
+FindPop2=""
 for i,v in pairs(Achievement) do
+if not i == Title or i == Reason or i == Image then
+StopFinding = true
+FindPop2=FindPop2.." "..v
+else
     Write=Write.." "..v
+    end
+    end
+    if StopFinding = true then
+    Write=FindPop2
     end
 appendfile(filePath,Write.."|")
 end
