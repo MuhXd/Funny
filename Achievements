@@ -5,7 +5,7 @@ local AchievementLoader = {}
 
 
 AchievementLoader.Load = function(ModName)
-
+print("LOADED!")
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 if not valid2 then
@@ -21,6 +21,8 @@ local valid = isfile(filePath)
 if not valid then
 writefile(filePath, "Helped by RegularVynixu|")
 end
+
+
 end
 function AchievementsGet(Achievement,ModName)
 
