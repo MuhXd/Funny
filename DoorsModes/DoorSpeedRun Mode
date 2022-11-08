@@ -1,0 +1,32 @@
+
+b=false
+oo=false
+while true do wait()
+if game.Players.LocalPlayer.Character:GetAttribute("Hiding") then
+firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to HIDE","Stop Hiding"})
+if oo == true then
+b=true
+end
+oo=true
+firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to HIDE","Stop Hiding"})
+game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health -0.122
+oo=false
+end
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+b=true
+oo=false
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/Funny/main/Jack'))()
+end)
+
+         
+
+                
+if b == false then
+firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {"You died to Speedrun","Run to The door as Quick as you can","Or hide But not too Long"})
+  game.ReplicatedStorage.GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Speedrun"
+game.Players.LocalPlayer.Character.Humanoid.Health = game.Players.LocalPlayer.Character.Humanoid.Health  - 0.1
+elseif oo == false then
+game.Players.LocalPlayer.Character.Humanoid.Health = 100
+b=false
+ end
+end 
