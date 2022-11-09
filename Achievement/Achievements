@@ -80,7 +80,7 @@ appendfile(filePath,Write.."|")
 end
 end
 for i.v in pairs(AchievementLoader) do
-warn(v)
+print(i.." "..v)
 end
 
 AchievementLoader.Get = function(Give,ModName)
