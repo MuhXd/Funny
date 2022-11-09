@@ -1,4 +1,3 @@
-
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local AchievementsLoaders = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local Achievement = {}
@@ -61,7 +60,7 @@ end
 end
 end 
 if FOUND == false then
-Achievements.Get(Achievement)
+AchievementsLoaders.Get(Achievement)
 Write = ""
 FindPop2=""
 for i,v in pairs(Achievement) do
@@ -79,11 +78,7 @@ else
 appendfile(filePath,Write.."|")
 end
 end
-for i.v in pairs(AchievementLoader) do
-print(i.." "..v)
-end
 
 Achievement.Get = function(Give,ModName)
 AchievementsGet(Give,ModName)
 end
-
