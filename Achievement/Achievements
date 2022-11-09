@@ -79,10 +79,11 @@ else
 appendfile(filePath,Write.."|")
 end
 end
+for i.v in pairs(AchievementLoader) do
+warn(v)
+end
 
 AchievementLoader.Get = function(Give,ModName)
 AchievementsGet(Give,ModName)
 end
-for i.v in pairs(AchievementLoader) do
-warn(v)
-end
+
