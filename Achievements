@@ -19,11 +19,10 @@ if not valid then
 writefile(filePath, "Helped by RegularVynixu|")
 end
 
-if game.PlaceId == 6516141723 then
-warn("In the Lobby Making a Achievement Gui")
-elseif game.PlaceId == 68391747 then
-warn("InGame")
-end
+--if game.PlaceId == 6516141723 then
+--warn("In the Lobby Making a Achievement Gui")
+--end
+
 end
 function AchievementsGet(Achievement,ModName)
 
