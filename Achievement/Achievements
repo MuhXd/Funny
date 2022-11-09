@@ -1,7 +1,6 @@
 print("Made by MuhammadGames and Helped by RegularVynixu")
-local AchievementsLoaders = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
-local Achievement = {}
-
+local Achievement = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
+local AchievementsLoaders = {}
 Achievement.Load = function(ModName)
 print("LOADED!")
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
@@ -60,7 +59,7 @@ end
 end
 end 
 if FOUND == false then
-AchievementsLoaders.Get(Achievement)
+Achievement.Get(Achievement)
 Write = ""
 FindPop2=""
 for i,v in pairs(Achievement) do
