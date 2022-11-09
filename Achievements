@@ -23,9 +23,7 @@ end
 
 if game.PlaceId == 6516141723 then
 warn("In the Lobby Making a Achievement Gui")
-end
-
-if game.PlaceId == 68391747 then
+elseif game.PlaceId == 68391747 then
 warn("InGame")
 end
 end
