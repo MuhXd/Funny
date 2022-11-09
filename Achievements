@@ -49,8 +49,7 @@ else
     Find=Find.." "..v
 end
 end
-read23=read2
-read2 = string.split(read23,"#")
+
     for i,v in pairs(read2) do
     if StopFinding == true then
     if v == FindPop then
