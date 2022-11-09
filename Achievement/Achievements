@@ -1,7 +1,7 @@
 
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
-local AchievementLoader = {}
+local AchievementLoader = {"Test"}
 
 AchievementLoader.Load = function(ModName)
 print("LOADED!")
