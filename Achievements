@@ -25,7 +25,6 @@ elseif game.PlaceId == 68391747 then
 warn("InGame")
 end
 end
-end
 function AchievementsGet(Achievement,ModName)
 
  local fileName = ModName.."Save's.txt"
@@ -79,6 +78,7 @@ else
 appendfile(filePath,Write.."|")
 end
 end
+
 AchievementLoader.Get = function(Give,ModName)
 AchievementsGet(Give,ModName)
 end
