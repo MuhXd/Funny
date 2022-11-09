@@ -1,9 +1,9 @@
 
 print("Made by MuhammadGames and Helped by RegularVynixu")
-local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
-local AchievementLoader = {"Test"}
+local AchievementsLoaders = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
+local AchievementLoader = {}
 
-AchievementLoader.Load = function(ModName)
+Achievement.Load = function(ModName)
 print("LOADED!")
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
@@ -83,7 +83,7 @@ for i.v in pairs(AchievementLoader) do
 print(i.." "..v)
 end
 
-AchievementLoader.Get = function(Give,ModName)
+Achievement.Get = function(Give,ModName)
 AchievementsGet(Give,ModName)
 end
 
