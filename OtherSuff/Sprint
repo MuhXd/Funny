@@ -646,7 +646,7 @@ function QCHWWK_fake_script() -- StaminaBar.SprintFire
 
 	--------------------------------------------------------------------------------------------------------------
 
-	game.Players.LocalPlayer.Character.Humanoid.Changed:Connect(function()
+	char.Changed:Connect(function()
 		if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed2 and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 10 then
 			DEF=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 			if sprinting == true then
