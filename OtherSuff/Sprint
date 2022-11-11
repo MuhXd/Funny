@@ -67,7 +67,7 @@ Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Border.BorderSizePixel = 4
 
 
-Border.Position = UDim2.new(0.25, 0, 0.960099876, 0)
+Border.Position = UDim2.new(0.25, 0, 0.85, 0)
 
 
 Border.Size = UDim2.new(0.6, 0, 0.0263093561, 0)
@@ -157,7 +157,7 @@ local Started=false
 local OO = 0
 
 
- function QCHWWK_fake_script() -- StaminaBar.SprintFire 
+function QCHWWK_fake_script() -- StaminaBar.SprintFire 
 
 
 	local script = Instance.new('LocalScript', StaminaBar)
@@ -396,7 +396,7 @@ local OO = 0
 
 
 
-	
+
 
 
 	--------------------------------------------------------------------------------------------------------------
@@ -407,9 +407,9 @@ local OO = 0
 	local sprinting = false
 
 
+	local DEF = 16
 
-
-	 function sprint(name, IS, context)
+	function sprint(name, IS, context)
 
 
 		--	ModuleScripts.MainGame.camShaker.ShakeOnce(ModuleScripts.MainGame.camShaker, 5)
@@ -417,14 +417,18 @@ local OO = 0
 
 		if IS == Enum.UserInputState.Begin then
 
-
+			if sprinting == false then
+				DEF = char.Humanoid.WalkSpeed
+			end
 			--	runSound.PlaybackSpeed = 4 -- Changes the playback speed that the running sound plays at during sprinting, replace 4 with your desired playback speed if wanted
 
 
 			script.Parent.Dissapear.Value=999999999999999999999999999999999999999999999999999999999999999999999
 
-
-			char.Humanoid.WalkSpeed = 34 -- Sets player speed to 32, replace 32 with your desired speed if wanted
+			
+			Walkspeed2 = DEF+17
+			char.Humanoid.WalkSpeed = Walkspeed2
+			
 
 
 			sprinting = true
@@ -433,7 +437,7 @@ local OO = 0
 			while stamPower > 0 and sprinting == true do
 
 
-				
+
 
 
 				if Started~=true then
@@ -481,9 +485,9 @@ local OO = 0
 
 
 					--	runSound.PlaybackSpeed = 2
+					Walkspeed2 = DEF
 
-
-					char.Humanoid.WalkSpeed = 16
+					char.Humanoid.WalkSpeed = Walkspeed2
 
 
 					SmallFOV:Play()
@@ -532,8 +536,8 @@ local OO = 0
 
 			--	runSound.PlaybackSpeed = 2 -- Resets the playback speed to its original value, recommended to leave as is
 
-
-			char.Humanoid.WalkSpeed = 16 -- Sets player speed to 16 (Roblox game default), if you change your Roblox game's default player speed, replace 16 with the new value
+			Walkspeed2 = DEF
+				char.Humanoid.WalkSpeed = Walkspeed2 -- Sets player speed to 16 (Roblox game default), if you change your Roblox game's default player speed, replace 16 with the new value
 
 
 			sprinting = false
@@ -591,7 +595,7 @@ local OO = 0
 				SideBar.Bar.Size = UDim2.new(1, 0, stamPower/100, 0)
 
 
-				
+
 
 
 				--if cam.FieldOfView > 78 and script.Parent.Dissapear.Value ~= 10 then
@@ -600,13 +604,13 @@ local OO = 0
 				--	Fov(70)
 
 
-			--	end
+				--	end
 
 
-		
 
 
-				
+
+
 
 
 				if Started~=false then
@@ -642,7 +646,16 @@ local OO = 0
 
 	--------------------------------------------------------------------------------------------------------------
 
-
+	char.Changed:Connect(function()
+		if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed2  then
+			DEF=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+			if sprinting == true then
+				WalkSpeed2=DEF+17
+				game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = DEF
+			end
+			
+		end
+	end)
 
 	function updateBobbleEffect()
 
@@ -670,13 +683,13 @@ local OO = 0
 				humanoid.CameraOffset = humanoid.CameraOffset:lerp(bobble, .75)
 
 
-			
+
 
 
 			else -- we are not walking
 
 
-				humanoid.CameraOffset = humanoid.CameraOffset * .75
+				humanoid.CameraOffset =humanoid.CameraOffset * 0
 
 
 			end
@@ -692,7 +705,7 @@ local OO = 0
 	runService.RenderStepped:Connect(updateBobbleEffect)
 
 
-	
+
 
 
 
@@ -715,7 +728,7 @@ end
 coroutine.wrap(QCHWWK_fake_script)()
 
 
- function CJZEISY_fake_script() -- SideBar.LocalScript 
+function CJZEISY_fake_script() -- SideBar.LocalScript 
 
 
 	local script = Instance.new('LocalScript', SideBar)
@@ -729,7 +742,6 @@ end
 
 
 coroutine.wrap(CJZEISY_fake_script)()
-
 
 
 
