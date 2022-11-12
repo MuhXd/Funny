@@ -1,3 +1,7 @@
+local SelfModules = {
+    Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))(),
+}
+
 local SpawnerLibrary = {
 	Tween = function(object, input, studspersecond, offset)
 		local char = game:GetService("Players").LocalPlayer.Character;
@@ -39,16 +43,28 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(Rooms, Kill)
+		Func = function(SeekModelModel,SeekStopRoom, Kill)
 			Kill = Kill and Kill or false
-			Rooms = Rooms and tonumber(Rooms) or 15
+			Model = Model or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
+			if SeekStopRoom = "inf" then
+			Rooms = Rooms and 100
+			else
+			Rooms = Rooms and tonumber(SeekStopRoom) or 15
+			end
 			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 
 			workspace.Ambience_Seek.TimePosition = 0
 			workspace["Ambience_Seek"]:Play()
-
-			local firgur = game:GetObjects("rbxassetid://10829142080")[1]
-
+ 
+ 
+			local firgur =  LoadCustomInstance(Model)
+			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
+			Figure.Parent=firgur
+			local ManualWeld =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/root.rbxm?raw=true")
+                        ManualWeld.Parent=firgur:FindFirstChild("Root")
+			local ManualWeld2 =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/hitbox.rbxm?raw=true")
+                        ManualWeld2.Parent=Figure:FindFirstChild("Hitbox")
+			
 			firgur.Figure.Anchored = true
 			firgur.Parent = workspace
 
