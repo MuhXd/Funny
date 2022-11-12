@@ -60,6 +60,7 @@ local Entities = {
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
 			Figure.Parent=firgur
+			firgur.PrimaryPart = Figure
 			local ManualWeld =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/root.rbxm?raw=true")
                         ManualWeld.Parent=firgur.SeekRig:FindFirstChild("Root") or firgur[Rigname]:FindFirstChild("Root")
 			local ManualWeld2 =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/hitbox.rbxm?raw=true")
