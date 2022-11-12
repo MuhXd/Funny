@@ -73,6 +73,7 @@ local Entities = {
 
 			val.Changed:Connect(function()
 				firgur.SeekRig:PivotTo(val.Value)
+				Figure:PivotTo(val.Value)
 			end)
 
 			local early, latest = SpawnerLibrary.Calculate()
