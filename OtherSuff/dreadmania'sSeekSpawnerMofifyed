@@ -93,8 +93,7 @@ local Entities = {
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
 	
-			firgur.Figure.Footsteps:Play()
-			firgur.Figure.FootstepsFar:Play()
+			
 
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://7758895278"
@@ -113,7 +112,8 @@ local Entities = {
 					end
 				end
 			end)()
-
+firgur.Figure.Footsteps:Play()
+			firgur.Figure.FootstepsFar:Play()
 			if Kill then
 				-- Not coded in yet
 			end
