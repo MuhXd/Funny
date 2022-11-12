@@ -141,6 +141,11 @@ local Entities = {
 }
 
 function Spawner:Spawn(Entity, ...)
+Args=...
+SeekModel = Args["SeekModel"] or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
+SeekS2 = Args["SeekStopRoom"] or nil
+SeekS3 = Args["Kill"] or false
+
 	local Args = {...}
 print(Args)
 	print(Entity)
@@ -148,7 +153,7 @@ print(Args)
 	for Name,List in pairs(Entities) do
 		print(Name)
 		if Name == Entity then
-			List["Func"](unpack(Args))
+			List["Func"](SeekModel,SeekS2,SeekS3)
 		end
 	end
 end
