@@ -51,7 +51,7 @@ local Entities = {
 			else
 			Rooms = Rooms and tonumber(SeekStopRoom) or 15
 			end
-			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
+
 
 			workspace.Ambience_Seek.TimePosition = 0
 			workspace["Ambience_Seek"]:Play()
@@ -85,7 +85,7 @@ local Entities = {
 
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
-
+			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 			require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator["Main_Game"].RemoteListener.Cutscenes.SeekIntro)(u2)
 			firgur.Figure.Footsteps:Play()
 			firgur.Figure.FootstepsFar:Play()
