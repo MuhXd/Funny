@@ -142,7 +142,7 @@ local Entities = {
 
 function Spawner:Spawn(Entity, ...)
 	local Args = {...}
-
+print(Args)
 	print(Entity)
 
 	for Name,List in pairs(Entities) do
