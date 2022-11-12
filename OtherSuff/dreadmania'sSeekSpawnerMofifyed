@@ -57,6 +57,8 @@ local Entities = {
 			workspace["Ambience_Seek"]:Play()
  
  local Rigname = "SeekRig"
+ 		 local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
+		
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
 			Figure.Parent=firgur
@@ -79,7 +81,7 @@ local Entities = {
 			local early, latest = SpawnerLibrary.Calculate()
 
 			val.Value = early.Nodes["1"].CFrame + Vector3.new(0,5,0)
-
+	                require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator["Main_Game"].RemoteListener.Cutscenes.SeekIntro)(u2)
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://9896641335"
 
@@ -87,8 +89,7 @@ local Entities = {
 
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
-			 local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
-			 require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator["Main_Game"].RemoteListener.Cutscenes.SeekIntro)(u2)
+	
 			firgur.Figure.Footsteps:Play()
 			firgur.Figure.FootstepsFar:Play()
 
