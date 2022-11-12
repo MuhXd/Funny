@@ -46,7 +46,7 @@ local Entities = {
 		Func = function(SeekModelModel,SeekStopRoom, Kill)
 			Kill = Kill and Kill or false
 			Model = Model or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
-			if SeekStopRoom = "inf" then
+			if SeekStopRoom == "inf" then
 			Rooms = Rooms and 100
 			else
 			Rooms = Rooms and tonumber(SeekStopRoom) or 15
