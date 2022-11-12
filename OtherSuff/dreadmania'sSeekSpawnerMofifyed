@@ -43,9 +43,9 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(SeekModelModel,SeekStopRoom, Kill)
+		Func = function(SeekModel,SeekStopRoom, Kill)
 			Kill = Kill and Kill or false
-			Model = Model or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
+			Model = SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
 			if SeekStopRoom == "inf" then
 			Rooms = Rooms and 100
 			else
@@ -56,12 +56,12 @@ local Entities = {
 			workspace.Ambience_Seek.TimePosition = 0
 			workspace["Ambience_Seek"]:Play()
  
- 
+ local Rigname = "SeekRig"
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
 			Figure.Parent=firgur
 			local ManualWeld =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/root.rbxm?raw=true")
-                        ManualWeld.Parent=firgur:FindFirstChild("Root")
+                        ManualWeld.Parent=firgur.SeekRig:FindFirstChild("Root") or firgur[Rigname]:FindFirstChild("Root")
 			local ManualWeld2 =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/hitbox.rbxm?raw=true")
                         ManualWeld2.Parent=Figure:FindFirstChild("Hitbox")
 			
@@ -146,8 +146,6 @@ SeekModel = Args["SeekModel"] or "https://github.com/MuhXd/Models/blob/main/Seek
 SeekS2 = Args["SeekStopRoom"] or nil
 SeekS3 = Args["Kill"] or false
 
-	local Args = {...}
-print(Args)
 	print(Entity)
 
 	for Name,List in pairs(Entities) do
