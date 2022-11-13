@@ -62,6 +62,8 @@ local Entities = {
 			workspace["Ambience_Seek"]:Play()
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
+		        firgur.Figure.Anchored = true
+			firgur.Parent = workspace
 			Figure.Parent=firgur
 			firgur.PrimaryPart = Figure
 			local ManualWeld =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/root.rbxm?raw=true")
