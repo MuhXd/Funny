@@ -71,7 +71,7 @@ local Entities = {
 
 			val.Changed:Connect(function()
 				firgur.SeekRig:PivotTo(val.Value)
-				Figure:PivotTo(val.Value)
+				
 			end)
 
 			local early, latest = SpawnerLibrary.Calculate()
@@ -80,7 +80,7 @@ local Entities = {
 
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://9896641335"
-
+                        Figure:PivotTo(firgur.SeekRig.Root.CFrame - Vector3.new(0,1.3,0.1))
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
