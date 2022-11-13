@@ -62,16 +62,9 @@ local Entities = {
 			workspace["Ambience_Seek"]:Play()
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
-		        firgur.Figure.Anchored = true
-			firgur.Parent = workspace
 			Figure.Parent=firgur
 			firgur.PrimaryPart = Figure
-			local ManualWeld =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/root.rbxm?raw=true")
-                        ManualWeld.Parent=firgur.SeekRig:FindFirstChild("Root") or firgur[Rigname]:FindFirstChild("Root")
-			local ManualWeld2 =  LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/hitbox.rbxm?raw=true")
-                        ManualWeld2.Parent=Figure:FindFirstChild("Hitbox")
-			
-			firgur.Figure.Anchored = true
+		        firgur.Figure.Anchored = true
 			firgur.Parent = workspace
 
 			local val = Instance.new("CFrameValue")
@@ -80,7 +73,8 @@ local Entities = {
 				firgur.SeekRig:PivotTo(val.Value)
 				Figure:PivotTo(val.Value)
 			end)
-	local early, latest = SpawnerLibrary.Calculate()
+
+			local early, latest = SpawnerLibrary.Calculate()
 
 			val.Value = early.Nodes["1"].CFrame + Vector3.new(0,5,0)
 
@@ -102,8 +96,6 @@ local Entities = {
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local chase = true
-			
-			
 
 			coroutine.wrap(function()
 				while task.wait() do
