@@ -58,7 +58,8 @@ local Entities = {
  local Rigname = "SeekRig"
  
  		 local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
-		
+			workspace.Ambience_Seek.TimePosition = 0
+			workspace["Ambience_Seek"]:Play()
 			local firgur =  LoadCustomInstance(Model)
 			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
 			Figure.Parent=firgur
@@ -77,13 +78,10 @@ local Entities = {
 				firgur.SeekRig:PivotTo(val.Value)
 				Figure:PivotTo(val.Value)
 			end)
-	
-			local early, latest = SpawnerLibrary.Calculate()
+	local early, latest = SpawnerLibrary.Calculate()
 
 			val.Value = early.Nodes["1"].CFrame + Vector3.new(0,5,0)
-			workspace.Ambience_Seek.TimePosition = 0
-			workspace["Ambience_Seek"]:Play()
-			
+
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://9896641335"
 
@@ -95,13 +93,14 @@ local Entities = {
 			require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator["Main_Game"].RemoteListener.Cutscenes.SeekIntro)(u2)
 			firgur.Figure.Footsteps:Play()
 			firgur.Figure.FootstepsFar:Play()
-			
-                 local anim = Instance.new("Animation")
+
+			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://7758895278"
 
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local chase = true
+			
 			
 
 			coroutine.wrap(function()
