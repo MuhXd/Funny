@@ -1,0 +1,3 @@
+DiscordLink = "https://discord.gg/RJ2XTE4ypq"
+DiscordLink = string.split(DiscordLink,"https://discord.gg/")
+return DiscordLink
