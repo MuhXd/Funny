@@ -77,7 +77,7 @@ local SelfModules = {
 }
 
 Doge = LoadCustomInstance("https://github.com/MuhXd/DoorSuff/blob/main/DogoMod/DogoModel.rbxm?raw=true")
-
+Doge.Parent = game.Workspace
 tp = game.Players.LocalPlayer.Character.WorldPivot
 Doge:PivotTo(tp)
 repeat task.wait()
