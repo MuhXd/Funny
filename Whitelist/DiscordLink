@@ -1,5 +1,5 @@
 DiscordLink3=""
-DiscordLink = "https://discord.gg/RJ2XTE4ypq"
+DiscordLink = "https://discord.gg/bVYU9B6ehw"
 DiscordLink2 = string.split(DiscordLink,"https://discord.gg/")
 for i,v in pairs(DiscordLink2) do
 		DiscordLink3=DiscordLink3..v
