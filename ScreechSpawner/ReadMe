@@ -7,7 +7,7 @@ ExampleScreech = {
 
 -----[[ Advanced Settings ]]-----
 entity.Debug.Spawned = function(NameofModel,Configs)
-    print("Entity Has Spawned : Model Name", NameofModel .. " Settings Are"..Configs)
+    print("Entity Has Spawned : Model Name", NameofModel .. " Settings Are "..Configs)
 end
 
 entity.Debug.Looked = function(NameofModel)
