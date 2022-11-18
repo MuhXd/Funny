@@ -6,8 +6,8 @@ ExampleScreech = Screech.createEntity{
 }
 
 -----[[ Advanced Settings ]]-----
-ExampleScreech.Debug.Spawned = function(NameofModel,Configs)
-    print("Entity Has Spawned : Model Name ", NameofModel .. " Settings Are "..Configs)
+ExampleScreech.Debug.Spawned = function(NameofModel)
+    print("Entity Has Spawned : Model Name ", NameofModel)
 end
 
 ExampleScreech.Debug.Looked = function(NameofModel)
@@ -21,8 +21,4 @@ ExampleScreech.Debug.Despawned = function(NameofModel)
     print("Entity Has Despawned : Model Name ".. NameofModel)
 end
 
-Creator.Run(ExampleScreech)
-
-
-
-
+Screech.Run(ExampleScreech)
