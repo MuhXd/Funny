@@ -1,1 +1,6 @@
-# Spawns a Screech That is Customizable
+Spawns a Screech That is Customizable!
+
+ExampleScreech = {
+    Model="https://github.com/MuhXd/DoorSuff/blob/main/DoorsModes/ReScreech.rbxm?raw=true"
+    Hurts = true
+}
