@@ -1,6 +1,6 @@
 Spawns a Screech That is Customizable!
 
 ExampleScreech = {
-    Model="https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/ScreechDefault.rbxm?raw=true"
-    Hurts = true
+    Model="https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/ScreechDefault.rbxm?raw=true",
+    Hurts = true,
 }
