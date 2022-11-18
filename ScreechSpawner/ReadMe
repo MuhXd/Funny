@@ -5,7 +5,7 @@ ExampleScreech = {
     Hurts = true,
 }
 
------[[ Advanced ]]-----
+-----[[ Advanced Settings ]]-----
 entity.Debug.Spawned = function(NameofModel,Configs)
     print("Entity Has Spawned : Model Name", NameofModel .. " Settings Are"..Configs)
 end
