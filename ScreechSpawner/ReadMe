@@ -1,6 +1,6 @@
 -- Spawns a Screech That is Customizable!
 
-ExampleScreech = {
+ExampleScreech = Screech.createEntity{
     Model="https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/ScreechDefault.rbxm?raw=true",
     Hurts = true,
 }
@@ -21,6 +21,7 @@ entity.Debug.Despawned = function(NameofModel)
     print("Entity Has Despawned : Model Name ".. NameofModel)
 end
 
+Creator.Run(ExampleScreech)
 
 
 
