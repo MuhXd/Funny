@@ -6,18 +6,18 @@ ExampleScreech = Screech.createEntity{
 }
 
 -----[[ Advanced Settings ]]-----
-entity.Debug.Spawned = function(NameofModel,Configs)
+ExampleScreech.Debug.Spawned = function(NameofModel,Configs)
     print("Entity Has Spawned : Model Name ", NameofModel .. " Settings Are "..Configs)
 end
 
-entity.Debug.Looked = function(NameofModel)
+ExampleScreech.Debug.Looked = function(NameofModel)
     print("Entity has Been Looked At : Model Name ".. NameofModel)
 end
-entity.Debug.TimeOut = function(NameofModel)
+ExampleScreech.Debug.TimeOut = function(NameofModel)
     print("Entity has Not Been Looked At In Time : Model Name ".. NameofModel)
 end
 
-entity.Debug.Despawned = function(NameofModel)
+ExampleScreech.Debug.Despawned = function(NameofModel)
     print("Entity Has Despawned : Model Name ".. NameofModel)
 end
 
