@@ -2,8 +2,13 @@
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local AchievementsLoaders = {}
-AchievementsLoaders.Load = function(ModName)
 
+
+
+
+
+
+AchievementsLoaders.Get = function(Achievement,ModName)
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 
@@ -24,14 +29,6 @@ end
 if game.PlaceId == 6516141723 then
 warn("In the Lobby Making a Achievement Gui")
 end
-
-end
-
-
-
-
-
-AchievementsLoaders.Get = function(Achievement,ModName)
 
  local fileName = ModName.."Save's.txt"
 local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".. "/".. fileName
