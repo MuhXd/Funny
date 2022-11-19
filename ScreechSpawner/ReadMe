@@ -1,5 +1,6 @@
 -- Spawns a Screech That is Customizable! Example:
-Screech = loadstring(game:HttpGet('https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/TheCode?raw=true'))()
+Screech = loadstring(game:HttpGet('https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/TheCode.lua?raw=true'))()
+
 
 ExampleScreech = Screech.createEntity{
     Model="https://github.com/MuhXd/DoorSuff/blob/main/ScreechSpawner/ScreechDefault.rbxm?raw=true",
