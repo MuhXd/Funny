@@ -1,6 +1,6 @@
 
 print("Made by MuhammadGames and Helped by RegularVynixu")
-local Achievement = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
+local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local AchievementsLoaders = {}
 AchievementsLoaders.Load = function(ModName)
 
@@ -10,12 +10,13 @@ local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularV
 if not valid2 then
   makefolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 end
+
+
+
 local fileName = ModName.."Save's.txt"
 local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".. "/".. fileName
 local valid = isfile(filePath)
 
-
-local FOUND = false
 if not valid then
 writefile(filePath, "Helped by RegularVynixu|")
 end
@@ -23,8 +24,10 @@ end
 if game.PlaceId == 6516141723 then
 warn("In the Lobby Making a Achievement Gui")
 end
+
 end
-end
+
+
 
 
 
@@ -63,7 +66,7 @@ FOUND=false
 end
 end 
 if FOUND == false then
-Achievement.Get(Achievement)
+Achievements.Get(Achievement)
 Write = ""
 FindPop2=""
 for i,v in pairs(Achievement) do
@@ -81,4 +84,30 @@ else
 appendfile(filePath,Write.."|")
 end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 return AchievementsLoaders
