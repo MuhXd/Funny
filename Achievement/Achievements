@@ -1,4 +1,4 @@
-local FOUND = false
+
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievement = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local AchievementsLoaders = {}
@@ -15,7 +15,7 @@ local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".
 local valid = isfile(filePath)
 
 
-
+local FOUND = false
 if not valid then
 writefile(filePath, "Helped by RegularVynixu|")
 end
