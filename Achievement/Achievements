@@ -3,7 +3,7 @@ print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievement = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local AchievementsLoaders = {}
 AchievementsLoaders.Load = function(ModName)
---print("LOADED!")
+
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 
@@ -60,7 +60,7 @@ FOUND=false
     if v == Find then
     FOUND = true
     end
-
+end
 end 
 if FOUND == false then
 Achievement.Get(Achievement)
