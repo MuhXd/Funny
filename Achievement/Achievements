@@ -1,9 +1,12 @@
 
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
-local Test123 = {}
-
-Test123.Give = function(Achievement,ModName)
+local AchievementsLoaders = {}
+AchievementsLoaders.Test = function(Achievement,ModName)
+print(Achievement)
+print(ModName)
+end
+AchievementsLoaders.Give = function(Achievement,ModName)
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 
@@ -28,7 +31,6 @@ end
  local fileName = ModName.."Save's.txt"
 local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".. "/".. fileName
 local valid = isfile(filePath)
-
     local read = readfile(filePath)  
 local read2 = tostring(read)
 local read2 = string.split(read,"|")
@@ -76,5 +78,5 @@ else
 appendfile(filePath,Write.."|")
 end
 end
- return Test123
+return AchievementsLoaders
 
