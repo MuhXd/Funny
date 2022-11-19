@@ -8,7 +8,7 @@ local AchievementsLoaders = {}
 
 
 
-AchievementsLoaders.Get = function(Achievement,ModName)
+AchievementsLoaders.Give = function(Achievement,ModName)
 local Slipt = string.split("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu","|")
 local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 
