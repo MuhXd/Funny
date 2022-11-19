@@ -9,7 +9,6 @@ local valid2 = isfolder("AchievementsSaves   By MuhammadGames,Helped by RegularV
 if not valid2 then
   makefolder("AchievementsSaves   By MuhammadGames,Helped by RegularVynixu")
 end
-
 local fileName = ModName.."Save's.txt"
 local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".. "/".. fileName
 local valid = isfile(filePath)
@@ -26,7 +25,9 @@ end
 
 
 end
-function AchievementsGet(Achievement,ModName)
+
+
+AchievementsLoaders.Get = function(Achievement,ModName)
 
  local fileName = ModName.."Save's.txt"
 local filePath = "AchievementsSaves   By MuhammadGames,Helped by RegularVynixu".. "/".. fileName
@@ -78,9 +79,5 @@ else
     end
 appendfile(filePath,Write.."|")
 end
-end
-
-AchievementsLoaders.Get = function(Give,ModName)
-AchievementsGet(Give,ModName)
 end
 return AchievementsLoaders
