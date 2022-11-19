@@ -60,7 +60,7 @@ FOUND=false
     if v == Find then
     FOUND = true
     end
-end
+
 end 
 if FOUND == false then
 Achievement.Get(Achievement)
