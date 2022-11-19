@@ -1,3 +1,4 @@
+local FOUND = false
 print("Made by MuhammadGames and Helped by RegularVynixu")
 local Achievement = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
 local AchievementsLoaders = {}
@@ -49,7 +50,7 @@ else
     Find=Find.." "..v
 end
 end
-
+FOUND=false
     for i,v in pairs(read2) do
     if StopFinding == true then
     if v == FindPop then
