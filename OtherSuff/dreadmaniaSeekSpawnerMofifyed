@@ -109,12 +109,11 @@ local Entities = {
 				while task.wait() do
 					if chase then
 						game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 23
-if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= Func.KillRange then
+if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= KillRange then
                     task.spawn(function()
                         Char:SetAttribute("IsDead", true)
-      --                  task.spawn(entityTable.Debug.OnDeath)
                         Hum.Health = 0
-                        ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = Func.EntityDeathName
+                        ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = EntityDeathRange
 			end)
 			end
 			
@@ -124,7 +123,7 @@ if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincibl
 						
 					end
 				end
-			end)()
+			end)
 
 			
 			for i = 1,15 do
