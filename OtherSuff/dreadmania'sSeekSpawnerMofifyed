@@ -40,6 +40,10 @@ local Entities = {
 	Seek = {
 		Model = nil,
 		Func = function(Args)
+		Guiding_light_message=Args.Guidinglight
+		KillRange=Args.KillRange
+		EntityDeathRange=Args.EntityDeathName
+		BlobModel=Args.BlobModel
 					Kill = Args.Kill and Args.Kill or false
 			Model = Args.SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
 			if Args.SeekStopRoom == "inf" then
