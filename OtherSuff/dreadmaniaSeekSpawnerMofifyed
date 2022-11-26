@@ -50,7 +50,7 @@ local Entities = {
 		KillRange= Args.KillRange or 4
 		EntityDeathRange=Args.EntityDeathName or "Seek"
 		BlobModel=Args.BlobModel or "https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true"
-		Model = Args.SeekModel or https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true
+		Model = Args.SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
 			Kill = Args.Kill or false
 			Rooms = Rooms and tonumber(SeekStopRoom) or 15
 					if SeekStopRoom == "inf" then
@@ -116,6 +116,7 @@ if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincibl
                         Hum.Health = 0
                         ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = Func.EntityDeathName
 			end)
+			end
 			
 						if math.random(1,100) == 95 then
 							firgur.Figure.Scream:Play()
