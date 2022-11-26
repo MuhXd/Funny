@@ -139,7 +139,7 @@ if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincibl
 					end
 				end
 			end
-			
+			end
 			
 			 
 
