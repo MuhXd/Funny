@@ -1,5 +1,5 @@
 
-local Plr = Players.LocalPlayer
+local Plr = game.Players.LocalPlayer
 local Char = Plr.Character or Plr.CharacterAdded:Wait()
 local Hum = Char:WaitForChild("Humanoid")
 
@@ -30,7 +30,7 @@ local SpawnerLibrary = {
 		local Latest = game.ReplicatedStorage.GameData.LatestRoom.Value
 
 		for _,Room in ipairs(workspace.CurrentRooms:GetChildren()) do
-			t += 1
+			t = t+ 1
 			if Room:FindFirstChild("RoomStart") and tonumber(Room.Name) == game.ReplicatedStorage.GameData.LatestRoom.Value then
 				Earliest = tonumber(Room.Name)
 				break;
@@ -171,4 +171,3 @@ print(Entity)
 	end
 end
 
-return Spawner
