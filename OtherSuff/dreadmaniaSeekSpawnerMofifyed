@@ -132,7 +132,7 @@ function Spawner:Spawn(Entity, ...)
 
 
 	for Name,List in pairs(Entities) do
-	print("seektest")
+	print(List)
 		if Name == Entity then
 			List["Func"](unpack(Args))
 		end
