@@ -1,3 +1,8 @@
+
+local Plr = Players.LocalPlayer
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+local Hum = Char:WaitForChild("Humanoid")
+
 local SpawnerLibrary = {
 	Tween = function(object, input, studspersecond, offset)
 		local char = game:GetService("Players").LocalPlayer.Character;
@@ -39,24 +44,42 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(SeekStopRoom, Kill)
+		Func = function(Args)
+		SeekStopRoom=Args.SeekStopRoom or 15
+		Guiding_light_message= Args.Guiding_light_message or "Put","Your","Custom","Death","Message"
+		KillRange= Args.KillRange or 4
+		EntityDeathRange=Args.EntityDeathName or "Seek"
+		BlobModel=Args.BlobModel or "https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true"
+		Model = Args.SeekModel or https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true
+			Kill = Args.Kill or false
+			Rooms = Rooms and tonumber(SeekStopRoom) or 15
+					if SeekStopRoom == "inf" then
+			Rooms = Rooms and 100
+			else
+			Rooms = Rooms and tonumber(SeekStopRoom) or 15
+			end
 
-			Kill = Kill and Kill or false
-			Rooms = Rooms and tonumber(Rooms) or 15
-			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 
+
+		
+ 
+ local Rigname = "SeekRig"
+ 
+ 		 local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 			workspace.Ambience_Seek.TimePosition = 0
 			workspace["Ambience_Seek"]:Play()
-
-			local firgur = game:GetObjects("rbxassetid://10829142080")[1]
-
-			firgur.Figure.Anchored = true
+			local firgur =  LoadCustomInstance(Model)
+			Figure = LoadCustomInstance(BlobModel) 
+			Figure.Parent=firgur
+			firgur.PrimaryPart = Figure
+		        firgur.Figure.Anchored = true
 			firgur.Parent = workspace
 
 			local val = Instance.new("CFrameValue")
 
 			val.Changed:Connect(function()
 				firgur.SeekRig:PivotTo(val.Value)
+				
 			end)
 
 			local early, latest = SpawnerLibrary.Calculate()
@@ -65,7 +88,7 @@ local Entities = {
 
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://9896641335"
-
+                        Figure:PivotTo(firgur.SeekRig.Root.CFrame - Vector3.new(0,1.3,0.1))
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
@@ -86,17 +109,23 @@ local Entities = {
 				while task.wait() do
 					if chase then
 						game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 23
+if Kill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= Func.KillRange then
+                    task.spawn(function()
+                        Char:SetAttribute("IsDead", true)
+      --                  task.spawn(entityTable.Debug.OnDeath)
+                        Hum.Health = 0
+                        ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = Func.EntityDeathName
+			end)
+			
 						if math.random(1,100) == 95 then
 							firgur.Figure.Scream:Play()
 						end
+						
 					end
 				end
 			end)()
 
-			if Kill then
-				-- Not coded in yet
-			end
-
+			
 			for i = 1,15 do
 				for i,v in ipairs(workspace.CurrentRooms:GetChildren()) do
 					if tonumber(v.Name) < tonumber(early.Name) then continue end
@@ -110,6 +139,9 @@ local Entities = {
 					end
 				end
 			end
+			end
+			end
+			 
 
 			chase = false
 			task.wait()
@@ -129,12 +161,12 @@ function Spawner:Spawn(Entity, ...)
 	local Args = {...}
 
 	
-
+print(Entity)
 
 	for Name,List in pairs(Entities) do
 	print(List)
 		if Name == Entity then
-			List["Func"](unpack(Args))
+			List["Func"](Args)
 		end
 	end
 end
