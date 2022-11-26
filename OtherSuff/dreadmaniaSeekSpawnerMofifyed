@@ -39,7 +39,9 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(Rooms, Kill)
+		Func = function(SeekStopRoom, Kill)
+		print(SeekStopRoom)
+		print(Kill)
 			Kill = Kill and Kill or false
 			Rooms = Rooms and tonumber(Rooms) or 15
 			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
