@@ -171,3 +171,4 @@ print(Entity)
 	end
 end
 
+return Spawner
