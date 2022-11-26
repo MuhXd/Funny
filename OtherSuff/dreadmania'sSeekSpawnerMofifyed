@@ -1,7 +1,3 @@
-local SelfModules = {
-    Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))(),
-}
-
 local SpawnerLibrary = {
 	Tween = function(object, input, studspersecond, offset)
 		local char = game:GetService("Players").LocalPlayer.Character;
@@ -43,35 +39,23 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(SeekModel,SeekStopRoom, Kill)
+		Func = function(Rooms, Kill)
 			Kill = Kill and Kill or false
-			Model = SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
-			if SeekStopRoom == "inf" then
-			Rooms = Rooms and 100
-			else
-			Rooms = Rooms and tonumber(SeekStopRoom) or 15
-			end
+			Rooms = Rooms and tonumber(Rooms) or 15
+			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 
-
-		
- 
- local Rigname = "SeekRig"
- 
- 		 local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 			workspace.Ambience_Seek.TimePosition = 0
 			workspace["Ambience_Seek"]:Play()
-			local firgur =  LoadCustomInstance(Model)
-			Figure = LoadCustomInstance("https://github.com/MuhXd/Models/blob/main/figur.rbxm?raw=true")
-			Figure.Parent=firgur
-			firgur.PrimaryPart = Figure
-		        firgur.Figure.Anchored = true
+
+			local firgur = game:GetObjects("rbxassetid://10829142080")[1]
+
+			firgur.Figure.Anchored = true
 			firgur.Parent = workspace
 
 			local val = Instance.new("CFrameValue")
 
 			val.Changed:Connect(function()
 				firgur.SeekRig:PivotTo(val.Value)
-				
 			end)
 
 			local early, latest = SpawnerLibrary.Calculate()
@@ -80,7 +64,7 @@ local Entities = {
 
 			local anim = Instance.new("Animation")
 			anim.AnimationId = "rbxassetid://9896641335"
-                        Figure:PivotTo(firgur.SeekRig.Root.CFrame - Vector3.new(0,1.3,0.1))
+
 			firgur.SeekRig.AnimationController:LoadAnimation(anim):Play()
 
 			local orig = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
@@ -141,17 +125,14 @@ local Entities = {
 }
 
 function Spawner:Spawn(Entity, ...)
-Args=...
-SeekModel = Args["SeekModel"] or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
-SeekS2 = Args["SeekStopRoom"] or nil
-SeekS3 = Args["Kill"] or false
+	local Args = {...}
 
 	print(Entity)
 
 	for Name,List in pairs(Entities) do
 		print(Name)
 		if Name == Entity then
-			List["Func"](SeekModel,SeekS2,SeekS3)
+			List["Func"](unpack(Args))
 		end
 	end
 end
