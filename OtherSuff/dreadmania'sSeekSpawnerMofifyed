@@ -39,13 +39,13 @@ local Spawner = {}
 local Entities = {
 	Seek = {
 		Model = nil,
-		Func = function(Rooms, Kill)
-					Kill = Kill and Kill or false
-			Model = SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
-			if SeekStopRoom == "inf" then
-			Rooms = Rooms and 100
+		Func = function(Args)
+					Kill = Args.Kill and Args.Kill or false
+			Model = Args.SeekModel or "https://github.com/MuhXd/Models/blob/main/Seekmoving.rbxm?raw=true"
+			if Args.SeekStopRoom == "inf" then
+			Rooms = Args.SeekStopRoom and 100
 			else
-			Rooms = Rooms and tonumber(SeekStopRoom) or 15
+			Rooms = Args.SeekStopRoom and tonumber(SeekStopRoom) or 15
 			end
 
 
