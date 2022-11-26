@@ -40,8 +40,7 @@ local Entities = {
 	Seek = {
 		Model = nil,
 		Func = function(SeekStopRoom, Kill)
-		print(SeekStopRoom)
-		print(Kill)
+
 			Kill = Kill and Kill or false
 			Rooms = Rooms and tonumber(Rooms) or 15
 			local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
@@ -130,7 +129,10 @@ function Spawner:Spawn(Entity, ...)
 	local Args = {...}
 
 	print(Entity)
-
+for Name,List in pairs(Args) do
+print(Name)
+print(List)
+end
 	for Name,List in pairs(Entities) do
 		print(Name)
 		if Name == Entity then
