@@ -147,7 +147,7 @@ function Spawner:Spawn(Entity, ...)
 	local Args = {...}
 
 	print(Entity)
-	print(Args)
+
 	for Name,List in pairs(Entities) do
 		print(Name)
 		if Name == Entity then
