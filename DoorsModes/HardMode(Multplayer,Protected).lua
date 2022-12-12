@@ -1,9 +1,6 @@
 --[=[
-
 @class txt
-
 This is my First Class
-
 --]=]
 
 print(os.date("%B"))
@@ -175,40 +172,10 @@ end
 
 AchievementsGet(HardCore)
 --[[
-
 ------------------------------------------------------------------------------------------------
-
 ------------------------------------------------------------------------------------------------ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Start of real Code!
 DON'T SHOW ABOVE!
-
-
-
-
-
 .............     .       .
 .     .     .     .       . 
 .     .     .     .       .
@@ -217,19 +184,6 @@ DON'T SHOW ABOVE!
 .     .     .     .       . 
 .     .     .     .       .
 .     .     .     .........
-
-
-
-
-
-
-
-
-
-
-
-
-
 --]]
 
 
@@ -405,6 +359,11 @@ function Depth()
         local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 
         -- Create entity
+        if  game.ReplicatedStorage.GameData.LatestRoom.Value ~= 50 then
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        else
+            Wait(20)
+            end
         local Depth = Creator.createEntity({
             CustomName = "Depth", -- Custom name of your entity
             Model = "https://github.com/sponguss/storage/raw/main/depth.rbxm", -- Can be GitHub file or rbxassetid
@@ -945,4 +904,3 @@ pcall(function()
 local VhsSansPas = coroutine.wrap(VhsSansSpawn)
 VhsSansPas()
 end)
-
