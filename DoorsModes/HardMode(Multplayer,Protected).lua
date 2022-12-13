@@ -378,8 +378,8 @@ function Depth()
                 1, -- Time (seconds)
             },
             Cycles = {
-                Min = 1,
-                Max = 1,
+                Min = 2,
+                Max = 2,
                 WaitTime = 2,
             },
             CamShake = {
@@ -412,7 +412,7 @@ function Depth()
                     },
                 },
             },
-            CustomDialog = {"You died to who you call Depth", "Depth is faster than rush and ambush", "And he can rebound up to 1 to 9 times","use what you leared from Ambush and rush tho."}, -- Custom death message (can be as long as you want)
+            CustomDialog = {"You died to who you call Depth", "Depth is faster than rush and ambush", "And he can rebound 2 Times","use what you leared from Ambush and rush tho.","I am Nerfing All Of Entitys","To not spawn in No Hiding Spots Rooms"}, -- Custom death message (can be as long as you want)
         })
 
 -----[[  Debug -=- Advanced  ]]-----
