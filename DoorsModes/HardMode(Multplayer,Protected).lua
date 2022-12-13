@@ -351,7 +351,7 @@ Stop=Lowest
 RanWait2=""
 function Depth()
     while true do task.wait()
-    
+    pcall(function()
         Be=true
 
         wait(30)
@@ -432,7 +432,9 @@ end
 
             -- Run the created entity
             Creator.runEntity(Depth)
+                            end)
         end
+
 
 end
 
@@ -441,7 +443,7 @@ end
     function SmilerSpawn()
         
         while true do task.wait()
-            
+            pcall(function()
                 --   print("A-60")
                 wait(40)
             
@@ -529,6 +531,7 @@ end
                     -- Run the created entity
                     Creator.runEntity(entity)
                 end
+                end)
     end
 end
 
