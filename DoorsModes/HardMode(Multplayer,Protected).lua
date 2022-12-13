@@ -456,7 +456,7 @@ end
                     Model = "https://github.com/PABMAXICHAC/doors-monsters-models/blob/main/Smiler.rbxm?raw=true", -- Can be GitHub file or rbxassetid
                     Speed = 850, -- Percentage, 100 = default Rush speed
                     DelayTime = 12, -- Time before starting cycles (seconds)
-                    HeightOffset = 0,
+                    HeightOffset = 1,
                     CanKill = true,
                     KillRange=100,
                     BreakLights = true,
