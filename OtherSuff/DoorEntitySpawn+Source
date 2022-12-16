@@ -127,7 +127,7 @@ Spawner.createEntity = function(config)
                     OnEntityEnteredRoom = function() end,
                     OnLookAtEntity = function() end,
                     OnDeath = function() end,
-                    SeeifCanKill = function() end
+                    NothidingKill = function() end
                 }
             }
 
@@ -248,14 +248,11 @@ Spawner.runEntity = function(entityTable)
                 end
 
                 -- Kill player
-                if Char:GetAttribute("Hiding") then
-  task.spawn(entityTable.Debug.SeeifCanKill,Char:GetAttribute("Invincible") or false, Char:GetAttribute("Hiding") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
-end
 
 --and not Char:GetAttribute("Hiding")
 DiedChar=Char:GetAttribute("IsDead") or false
                 if entityTable.Config.CanKill and not DiedChar  then
-                 task.spawn(entityTable.Debug.SeeifCanKill,Char:GetAttribute("Invincible") or false, Char:GetAttribute("Hiding") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
+                 task.spawn(entityTable.Debug.NothidingKill,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
                         if not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
                         task.spawn(function()
                         Char:SetAttribute("IsDead", true)
