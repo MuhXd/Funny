@@ -41,11 +41,11 @@ end
 function GetGitSound(GithubSnd,SoundName)
 SoundName=tostring(SoundName)
 	local url=GithubSnd
-	if not isfile(SoundName.."_.mp3") then
-		writefile(SoundName.."_.mp3", game:HttpGet(url))
-	end
+	
+		writefile(SoundName..".mp3", game:HttpGet(url))
+	
 	local sound=Instance.new("Sound")
-	sound.SoundId=(getcustomasset or getsynasset)(SoundName.."_.mp3")
+	sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
 	return sound
 end
 
@@ -76,10 +76,10 @@ function dragEntity(entityTable,entityModel, pos, speed)
     repeat task.wait() until not entityConnections.movementNode.Connected
 end
 
-function loadSound(soundData)
+function loadSound(soundData,Name)
 soundId = tostring(soundData[1])
 if soundId:find("https://") then
-sound = GetGitSound(soundData[1],soundData)
+sound = GetGitSound(soundData[1],Name)
   local properties = soundData[2]
  for i, v in next, properties do
         if i ~= "SoundId" and i ~= "Parent" then
@@ -140,7 +140,7 @@ Spawner.createEntity = function(config)
             end
 	    
   if config.EntitySounds.PlaySound then
-        PlaySound = loadSound(config.EntitySounds.PlaySound)
+        PlaySound = loadSound(config.EntitySounds.PlaySound,config.CustomName)
 	PlaySound.Name = "PlaySound"
 	if entityModel:FindFirstChild("PlaySound") then
 	PlaySound:Destroy()
@@ -148,7 +148,7 @@ Spawner.createEntity = function(config)
 	PlaySound.Parent = entityModel.PrimaryPart
     end
     if config.EntitySounds.Footsteps then
-        Footsteps = loadSound(config.EntitySounds.Footsteps)
+        Footsteps = loadSound("Footsteps",config.CustomName)
 	Footsteps.Name = "Footsteps"
 	if entityModel:FindFirstChild("Footsteps") then
 	Footsteps:Destroy()
@@ -316,7 +316,7 @@ DiedChar=Char:GetAttribute("IsDead") or false
                         -- Jumpscare
                         
                         if entityTable.Config.Jumpscare[1] then
-                            Spawner.runJumpscare(entityTable.Config.Jumpscare[2])
+                            Spawner.runJumpscare(entityTable.Config.Jumpscare[2],entityTable.Config)
                         end
 
                         -- Death handling
@@ -401,7 +401,7 @@ DiedChar=Char:GetAttribute("IsDead") or false
     end
 end
 
-Spawner.runJumpscare = function(config)
+Spawner.runJumpscare = function(config,Fullconfig)
     -- Variables
 
     local image1 = LoadCustomAsset(config.Image1)
@@ -409,11 +409,11 @@ Spawner.runJumpscare = function(config)
     local sound1, sound2 = nil, nil
 
     if config.Sound1 then
-        sound1 = loadSound(config.Sound1)
+        sound1 = loadSound(config.Sound1,Fullconfig.CustomName)
     end
 
     if config.Sound2 then
-        sound2 = loadSound(config.Sound2)
+        sound2 = loadSound(config.Sound2,Fullconfig.CustomName)
     end
 
     -- UI Construction
