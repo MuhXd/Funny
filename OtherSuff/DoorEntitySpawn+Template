@@ -1,7 +1,9 @@
-local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+
+local Spawner = loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/DoorSuff/main/OtherSuff/DoorEntitySpawn%2BSource'))()
+
 
 -- Create entity
-local entity = Creator.createEntity({
+local entity = Spawner.createEntity({
     CustomName = "Template Entity", -- Custom name of your entity
     Model = "https://github.com/RegularVynixu/Utilities/blob/main/Doors%20Entity%20Spawner/Models/Rush.rbxm?raw=true", -- Can be GitHub file or rbxassetid
     Speed = 100, -- Percentage, 100 = default Rush speed
@@ -55,10 +57,12 @@ local entity = Creator.createEntity({
 
 -----[[ Advanced Sctipting ]]-----
 
-  entityTable.Debug.SeeifCanKill = function(Invincible,Hiding)
-       print(Invincible) 
-             print(Hiding) 
-  end)
+entity.Debug.OnEntityMoving = function(Invincible,Hiding,plrCollisionPoint)
+           print("Invincible: "..tostring(Invincible))
+          print("Player to Entity Collision (None hiding Point): "..tostring(plrCollisionPoint))
+               print("Hiding: "..tostring(Hiding))
+       end
+       
 entity.Debug.OnEntitySpawned = function(entityTable)
     print("Entity has spawned:", entityTable.Model)
 end
@@ -90,4 +94,4 @@ end
 ------------------------
 
 -- Run the created entity
-Creator.runEntity(entity)
+Spawner.runEntity(entity)
