@@ -127,7 +127,8 @@ Spawner.createEntity = function(config)
                     OnEntityEnteredRoom = function() end,
                     OnLookAtEntity = function() end,
                     OnDeath = function() end,
-                    NothidingKill = function() end
+                    NothidingKill = function() end,
+                    OnEntityMoving = function() end,
                 }
             }
 
@@ -326,6 +327,7 @@ DiedChar=Char:GetAttribute("IsDead") or false
     for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
         for nodeIdx = 1, #entityNodes, 1 do
             dragEntity(entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
+               task.spawn(entityTable.Debug.OnEntityMoving)
         end
 
         if cyclesConfig.Max > 1 then
