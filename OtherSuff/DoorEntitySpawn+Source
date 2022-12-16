@@ -33,7 +33,10 @@ local Spawner = {}
 -- Misc Functions
 
 function getPlayerRoot()
-    return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head")
+    return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head") 
+end
+function GetPos()
+    return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
 
 function dragEntity(entityModel, pos, speed)
@@ -247,8 +250,8 @@ Spawner.runEntity = function(entityTable)
                 -- Kill player
 --and not Char:GetAttribute("Hiding")
                 if entityTable.Config.CanKill and not Char:GetAttribute("IsDead")  then
-                 task.spawn(entityTable.Debug.SeeifCanKill,Char:GetAttribute("Invincible") or false, Char:GetAttribute("Hiding") or false,(getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude or 9999999999)
-                        if not Char:GetAttribute("Invincible")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
+                 task.spawn(entityTable.Debug.SeeifCanKill,Char:GetAttribute("Invincible") or false, Char:GetAttribute("Hiding") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
+                        if not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
                         task.spawn(function()
                         Char:SetAttribute("IsDead", true)
 
