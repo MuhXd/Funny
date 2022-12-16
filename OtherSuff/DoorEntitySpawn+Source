@@ -140,7 +140,7 @@ Spawner.createEntity = function(config)
             end
 	    
   if config.EntitySounds.PlaySound then
-        PlaySound = loadSound(config.EntitySounds.PlaySound,config.CustomName)
+        PlaySound = loadSound("PlaySound",config.CustomName)
 	PlaySound.Name = "PlaySound"
 	if entityModel:FindFirstChild("PlaySound") then
 	PlaySound:Destroy()
@@ -409,11 +409,11 @@ Spawner.runJumpscare = function(config,Fullconfig)
     local sound1, sound2 = nil, nil
 
     if config.Sound1 then
-        sound1 = loadSound(config.Sound1,Fullconfig.CustomName)
+        sound1 = loadSound("Sound1",Fullconfig.CustomName)
     end
 
     if config.Sound2 then
-        sound2 = loadSound(config.Sound2,Fullconfig.CustomName)
+        sound2 = loadSound("Sound2",Fullconfig.CustomName)
     end
 
     -- UI Construction
