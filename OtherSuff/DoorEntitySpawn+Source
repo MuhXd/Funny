@@ -77,7 +77,8 @@ end
 
 function loadSound(soundData)
 if soundId:find("https://") then
-sound = GetGitSound(soundId,"Sound")
+sound = GetGitSound(soundData[1],"Sound")
+  local properties = soundData[2]
  for i, v in next, properties do
         if i ~= "SoundId" and i ~= "Parent" then
             sound[i] = v
