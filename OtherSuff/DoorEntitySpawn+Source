@@ -33,13 +33,10 @@ local Spawner = {}
 -- Misc Functions
 
 function getPlayerRoot()
-    return getPlayerRootA or GetCollisionPos()
-end
-function getPlayerRootA()
     return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head") 
 end
 function GetCollisionPos()
-    return Char:FindFirstChild("Collision") or getPlayerRootA()
+    return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
 function GetGitSound(GithubSnd,SoundName)
 	local url=GithubSnd
