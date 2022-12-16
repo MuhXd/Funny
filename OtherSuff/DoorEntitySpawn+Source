@@ -329,7 +329,6 @@ DiedChar=Char:GetAttribute("IsDead") or false
     end
 
     for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
-         task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
         for nodeIdx = 1, #entityNodes, 1 do
             dragEntity(entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
         end
