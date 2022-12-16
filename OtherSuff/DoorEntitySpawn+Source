@@ -40,11 +40,11 @@ function GetCollisionPos()
 end
 function GetGitSound(GithubSnd,SoundName)
 	local url=GithubSnd
-	if not isfile(SoundName.."_"..tostring(url)..".mp3") then
-		writefile(SoundName.."_"..tostring(url)..".mp3", game:HttpGet(url))
+	if not isfile(SoundName.."_.mp3") then
+		writefile(SoundName.."_.mp3", game:HttpGet(url))
 	end
 	local sound=Instance.new("Sound")
-	sound.SoundId=(getcustomasset or getsynasset)(SoundName.."_"..tostring(url)..".mp3")
+	sound.SoundId=(getcustomasset or getsynasset)(SoundName.."_.mp3")
 	return sound
 end
 
@@ -78,7 +78,7 @@ end
 function loadSound(soundData)
 soundId = tostring(soundData[1])
 if soundId:find("https://") then
-sound = GetGitSound(soundData[1],"Sound")
+sound = GetGitSound(soundData[1],soundData)
   local properties = soundData[2]
  for i, v in next, properties do
         if i ~= "SoundId" and i ~= "Parent" then
