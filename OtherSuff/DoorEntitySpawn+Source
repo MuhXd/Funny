@@ -81,6 +81,12 @@ end
 function loadSound(soundData)
 if soundId:find("https://") then
 sound = GetGitSound(soundId,"Sound")
+ for i, v in next, properties do
+        if i ~= "SoundId" and i ~= "Parent" then
+            sound[i] = v
+        end
+    end
+    
 sound.Parent = workspace
  return sound
 end
