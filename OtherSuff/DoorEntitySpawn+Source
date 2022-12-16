@@ -33,7 +33,7 @@ local Spawner = {}
 -- Misc Functions
 
 function getPlayerRoot()
-    return GetCollisionPos()
+    return getPlayerRootA or GetCollisionPos()
 end
 function getPlayerRootA()
     return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head") 
