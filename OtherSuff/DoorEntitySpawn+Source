@@ -41,6 +41,15 @@ end
 function GetCollisionPos()
     return Char:FindFirstChild("Collision") or getPlayerRootA()
 end
+function GetGitSound(GithubSnd,SoundName)
+	local url=GithubSnd
+	if not isfile(SoundName..".mp3") then
+		writefile(SoundName..".mp3", game:HttpGet(url))
+	end
+	local sound=Instance.new("Sound")
+	sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+	return sound
+end
 
 function dragEntity(entityTable,entityModel, pos, speed)
     
@@ -70,6 +79,11 @@ function dragEntity(entityTable,entityModel, pos, speed)
 end
 
 function loadSound(soundData)
+if soundId:find("https://") then
+sound = GetGitSound(soundId,"DownloadedSound")
+sound.Parent = workspace
+ return sound
+end
     local sound = Instance.new("Sound")
     local soundId = tostring(soundData[1])
     local properties = soundData[2]
@@ -80,11 +94,11 @@ function loadSound(soundData)
         end
     end
 
-    if soundId:find("rbxasset://") then -- Custom audio
+   if 
+   soundId:find("rbxasset://") then -- Custom audio
         sound.SoundId = soundId
-    else
-        local numberId = soundId:gsub("%D", "")
-
+    else 
+local numberId = soundId:gsub("%D", "")
         sound.SoundId = "rbxassetid://".. numberId
     end
     
