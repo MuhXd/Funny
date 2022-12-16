@@ -10,6 +10,7 @@ return {
         true,
         1
     },
+    EntitySounds = {},
     Cycles = {
         Min = 1,
         Max = 1,
