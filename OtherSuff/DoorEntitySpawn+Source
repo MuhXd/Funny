@@ -80,7 +80,7 @@ end
 
 function loadSound(soundData)
 if soundId:find("https://") then
-sound = GetGitSound(soundId,"DownloadedSound")
+sound = GetGitSound(soundId,"Sound")
 sound.Parent = workspace
  return sound
 end
