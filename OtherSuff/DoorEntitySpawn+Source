@@ -39,6 +39,7 @@ function GetCollisionPos()
     return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
 function GetGitSound(GithubSnd,SoundName)
+SoundName=tostring(SoundName)
 	local url=GithubSnd
 	if not isfile(SoundName.."_.mp3") then
 		writefile(SoundName.."_.mp3", game:HttpGet(url))
