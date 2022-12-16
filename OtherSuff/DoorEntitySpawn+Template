@@ -80,7 +80,7 @@ entity.Debug.OnEntityFinishedRebound = function()
 end
 
 entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
-    print("Entity:",,entityTable, "has entered room:", room)
+    print("Entity:",entityTable, "has entered room:", room)
 end
 
 entity.Debug.OnLookAtEntity = function()
