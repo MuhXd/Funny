@@ -35,7 +35,7 @@ local Spawner = {}
 function getPlayerRoot()
     return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head") 
 end
-function GetPos()
+function GetCollisionPos()
     return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
 
@@ -51,10 +51,11 @@ function dragEntity(entityModel, pos, speed)
         
         if entityModel.Parent and not entityModel:GetAttribute("NoAI") then
             local rootPos = entityModel.PrimaryPart.Position
-             task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
+            
             local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos
 
             if diff.Magnitude > 0.1 then
+             task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetCollisionPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
                 entityModel:SetPrimaryPartCFrame(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))
             else
                 entityConnections.movementNode:Disconnect()
