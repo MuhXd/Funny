@@ -40,6 +40,7 @@ function GetPos()
 end
 
 function dragEntity(entityModel, pos, speed)
+    
     local entityConnections = EntityConnections[entityModel]
 
     if entityConnections.movementNode then
@@ -47,8 +48,10 @@ function dragEntity(entityModel, pos, speed)
     end
 
     entityConnections.movementNode = RS.Stepped:Connect(function(_, step)
+        
         if entityModel.Parent and not entityModel:GetAttribute("NoAI") then
             local rootPos = entityModel.PrimaryPart.Position
+             task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
             local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos
 
             if diff.Magnitude > 0.1 then
@@ -253,7 +256,7 @@ Spawner.runEntity = function(entityTable)
 --and not Char:GetAttribute("Hiding")
 DiedChar=Char:GetAttribute("IsDead") or false
                 if entityTable.Config.CanKill and not DiedChar  then
-                 task.spawn(entityTable.Debug.NothidingKill,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
+                
                         if not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding")  and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
                         task.spawn(function()
                         Char:SetAttribute("IsDead", true)
@@ -325,9 +328,9 @@ DiedChar=Char:GetAttribute("IsDead") or false
     end
 
     for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
+         task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil)
         for nodeIdx = 1, #entityNodes, 1 do
             dragEntity(entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
-               task.spawn(entityTable.Debug.OnEntityMoving)
         end
 
         if cyclesConfig.Max > 1 then
