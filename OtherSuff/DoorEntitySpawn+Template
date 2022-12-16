@@ -17,7 +17,7 @@ local entityTable = Spawner.createEntity({
     },
     Cycles = {
         Min = 1,
-        Max = 4,
+        Max = 1,
         WaitTime = 2,
     },
     CamShake = {
@@ -33,11 +33,11 @@ local entityTable = Spawner.createEntity({
             Shake = true,
             Sound1 = {
                 "https://github.com/MuhXd/Models/blob/main/video0-1-3.mp3?raw=true", -- SoundId
-                { Volume = 1 }, -- Sound properties
+                { Volume = 5 }, -- Sound properties
             },
             Sound2 = {
                 "https://github.com/MuhXd/Models/blob/main/video0-1-3.mp3?raw=true", -- SoundId
-                { Volume = 1 }, -- Sound properties
+                { Volume = 5 }, -- Sound properties
             },
             Flashing = {
                 true, -- Enabled/Disabled
