@@ -76,7 +76,8 @@ function dragEntity(entityTable,entityModel, pos, speed)
 end
 
 function loadSound(soundData)
-if soundData[1]:find("https://") then
+soundId = tostring(soundData[1])
+if soundId:find("https://") then
 sound = GetGitSound(soundData[1],"Sound")
   local properties = soundData[2]
  for i, v in next, properties do
@@ -136,6 +137,7 @@ Spawner.createEntity = function(config)
             if config.CustomName then
                 entityModel.Name = config.CustomName
             end
+	    
   if config.EntitySounds.PlaySound then
         PlaySound = loadSound(config.EntitySounds.PlaySound)
 	PlaySound.Name = "PlaySound"
