@@ -33,10 +33,13 @@ local Spawner = {}
 -- Misc Functions
 
 function getPlayerRoot()
+    return GetCollisionPos()
+end
+function getPlayerRootA()
     return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head") 
 end
 function GetCollisionPos()
-    return Char:FindFirstChild("Collision") or getPlayerRoot()
+    return Char:FindFirstChild("Collision") or getPlayerRootA()
 end
 
 function dragEntity(entityTable,entityModel, pos, speed)
