@@ -76,7 +76,7 @@ function dragEntity(entityTable,entityModel, pos, speed)
 end
 
 function loadSound(soundData)
-if soundId:find("https://") then
+if soundData[1]:find("https://") then
 sound = GetGitSound(soundData[1],"Sound")
   local properties = soundData[2]
  for i, v in next, properties do
@@ -88,6 +88,7 @@ sound = GetGitSound(soundData[1],"Sound")
 sound.Parent = workspace
  return sound
 end
+
     local sound = Instance.new("Sound")
     local soundId = tostring(soundData[1])
     local properties = soundData[2]
