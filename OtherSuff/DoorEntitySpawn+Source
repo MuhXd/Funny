@@ -38,11 +38,18 @@ end
 function GetCollisionPos()
     return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
+function GetGitSoundID(GithubSnd,SoundName)
+local url=GithubSnd
+	FileName = SoundName
+         writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
+	return (getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
+	
+end
 function GetGitSound(GithubSnd,SoundName)
 SoundName=tostring(SoundName)
 	local url=GithubSnd
-	FileName = tick()
-		writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
+	FileName = SoundName
+         writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
 	
 	local sound=Instance.new("Sound")
 	sound.SoundId=(getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
@@ -138,24 +145,46 @@ Spawner.createEntity = function(config)
             if config.CustomName then
                 entityModel.Name = config.CustomName
             end
-	    
+	  
   if config.EntitySounds.PlaySound then
-        PlaySound = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
-	PlaySound.Name = "PlaySound"
-	FC=entityModel.PrimaryPart:FindFirstChild("PlaySound")
+  FC=entityModel.PrimaryPart:FindFirstChild("PlaySound")
+ 
+	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
 	if FC then
-	FC:Destroy()
-	end
+	FC.SoundId = soundidGIT
+	else
+	       PlaySound = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
+	PlaySound.Name = "PlaySound"
+	
 	PlaySound.Parent = entityModel.PrimaryPart
+	end
+	properties = config.EntitySounds.PlaySound[2]
+	for i, v in next, properties do
+        if i ~= "SoundId" and i ~= "Parent" then
+            PlaySound[i] = v
+        end
+    end
+    
+    
     end
     if config.EntitySounds.Footsteps then
-        Footsteps = loadSound(config.EntitySounds.Footsteps,"Footsteps"..config.CustomName)
+ FCA=entityModel.PrimaryPart:FindFirstChild("Footsteps")
+ 
+	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
+	if FCA then
+	FCA.SoundId = soundidGIT
+	else
+	       Footsteps = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
 	Footsteps.Name = "Footsteps"
-FA=entityModel.PrimaryPart:FindFirstChild("Footsteps")
-	if FA then
-	FA:Destroy()
-	end
+	
 	Footsteps.Parent = entityModel.PrimaryPart
+	end
+		properties = config.EntitySounds.Footsteps[2]
+	for i, v in next, properties do
+        if i ~= "SoundId" and i ~= "Parent" then
+            Footsteps[i] = v
+        end
+	
     end
     
             entityModel:SetAttribute("IsCustomEntity", true)
