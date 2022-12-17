@@ -74,8 +74,7 @@ end
         SoundTable={
      {PlaybackSpeed = 1},
         }
-      
-            CustomTable=SoundTable
+      CustomTable=SoundTable
         
         for i, v in next, CustomTable[1] do
         if i ~= "SoundId" and i ~= "Parent" then
@@ -206,9 +205,14 @@ PlaySound=	ResetSound(PlaySound,PlaySoundT)
             PlaySound[i] = v
         end
     end
-    end
+   
+        end
+        
+        end
     
     end
+    
+    
     if config.EntitySounds.Footsteps then
  FCA=entityModel.PrimaryPart:FindFirstChild("Footsteps")
  
@@ -229,7 +233,7 @@ Footsteps=	ResetSound(Footsteps,FootstepsT)
         if i ~= "SoundId" and i ~= "Parent" then
             Footsteps[i] = v
         end
-	
+	end
     end
     
             entityModel:SetAttribute("IsCustomEntity", true)
@@ -254,9 +258,9 @@ Footsteps=	ResetSound(Footsteps,FootstepsT)
             }
 
             return entityTable
-        end
-    end
+        
 end
+
 
 Spawner.runEntity = function(entityTable)
     -- Nodes
