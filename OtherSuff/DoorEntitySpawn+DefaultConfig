@@ -4,6 +4,7 @@ return {
     HeightOffset = 0,
     CanKill = true,
     KillRange = 50,
+    OneRoom = false,
     BreakLights = true,
     BackwardsMovement = false,
     FlickerLights = {
