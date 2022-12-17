@@ -11,6 +11,7 @@ local entity = Spawner.createEntity({
     HeightOffset = 0,
     CanKill = true,
     KillRange = 30,
+     OneRoom = false,
     BreakLights = true,
     BackwardsMovement = false,
     FlickerLights = {
