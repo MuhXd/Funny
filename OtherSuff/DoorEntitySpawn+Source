@@ -266,7 +266,7 @@ Spawner.runEntity = function(entityTable)
     -- Nodes
 
     local entityNodes = {}
-
+if not entityTable.Config.OneRoom then
     for _, room in next, workspace.CurrentRooms:GetChildren() do
         local nodes = room:WaitForChild("Nodes", 1)
         
@@ -282,7 +282,22 @@ Spawner.runEntity = function(entityTable)
             end
         end
     end
+else
+    room = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+     local nodes = room:WaitForChild("Nodes", 1)
+        
+        if nodes then
+            nodes = nodes:GetChildren()
 
+            table.sort(nodes, function(a, b)
+                return a.Name < b.Name
+            end)
+
+            for _, node in next, nodes do
+                entityNodes[#entityNodes + 1] = node
+            end
+        end
+    end
     -- Spawn
 
     local entityModel = entityTable.Model:Clone()
