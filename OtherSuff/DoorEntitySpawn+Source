@@ -142,16 +142,18 @@ Spawner.createEntity = function(config)
   if config.EntitySounds.PlaySound then
         PlaySound = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
 	PlaySound.Name = "PlaySound"
-	if entityModel:FindFirstChild("PlaySound") then
-	PlaySound:Destroy()
+	FC=entityModel.PrimaryPart:FindFirstChild("PlaySound")
+	if FC then
+	FC:Destroy()
 	end
 	PlaySound.Parent = entityModel.PrimaryPart
     end
     if config.EntitySounds.Footsteps then
         Footsteps = loadSound(config.EntitySounds.Footsteps,"Footsteps"..config.CustomName)
 	Footsteps.Name = "Footsteps"
-	if entityModel:FindFirstChild("Footsteps") then
-	Footsteps:Destroy()
+FA=entityModel.PrimaryPart:FindFirstChild("Footsteps")
+	if FA then
+	FA:Destroy()
 	end
 	Footsteps.Parent = entityModel.PrimaryPart
     end
