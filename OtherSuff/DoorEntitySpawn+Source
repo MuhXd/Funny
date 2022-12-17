@@ -164,7 +164,7 @@ Spawner.createEntity = function(config)
             PlaySound[i] = v
         end
     end
-    
+    end
     
     end
     if config.EntitySounds.Footsteps then
