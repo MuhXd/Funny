@@ -41,11 +41,11 @@ end
 function GetGitSound(GithubSnd,SoundName)
 SoundName=tostring(SoundName)
 	local url=GithubSnd
-	
-		writefile(SoundName..".mp3", game:HttpGet(url))
+	FileName = tick()
+		writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
 	
 	local sound=Instance.new("Sound")
-	sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+	sound.SoundId=(getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
 	return sound
 end
 
