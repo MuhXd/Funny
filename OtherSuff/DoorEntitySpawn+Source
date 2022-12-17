@@ -6,6 +6,21 @@ local RS = game:GetService("RunService")
 local TS = game:GetService("TweenService")
 local CG = game:GetService("CoreGui")
 
+local FootstepsT = {
+    {Volume = 1},
+     {PlaybackSpeed = 1},
+     {TimePosition = 0},
+    {RollOffMaxDistance =100},
+     {RollOffMinDistance =5},
+}
+local PlaySoundT = {
+    {Volume = 1},
+     {PlaybackSpeed = 1},
+     {TimePosition = 0},
+     {RollOffMaxDistance =300},
+     {RollOffMinDistance =5},
+}
+
 -- Variables
 
 local Plr = Players.LocalPlayer
@@ -39,12 +54,36 @@ function GetCollisionPos()
     return Char:FindFirstChild("Collision") or getPlayerRoot()
 end
 function GetGitSoundID(GithubSnd,SoundName)
+    SoundName=tostring(SoundName)
 local url=GithubSnd
+SoundName=tostring(SoundName)
+	local url=GithubSnd
 	FileName = SoundName
          writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
-	return (getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
-	
+return (getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
 end
+function RemoveChildren(Children)
+    	for i,v in pairs(Children:GetChildren()) do
+		    v:Remove()
+    	end
+    
+end
+
+
+    function ResetSound(soundD,CustomTable)
+        SoundTable={
+     {PlaybackSpeed = 1},
+        }
+      
+            CustomTable=SoundTable
+        
+        for i, v in next, CustomTable[1] do
+        if i ~= "SoundId" and i ~= "Parent" then
+            soundD[i] = v
+        end
+        end
+return soundD
+        end
 function GetGitSound(GithubSnd,SoundName)
 SoundName=tostring(SoundName)
 	local url=GithubSnd
@@ -149,13 +188,16 @@ Spawner.createEntity = function(config)
   if config.EntitySounds.PlaySound then
   FC=entityModel.PrimaryPart:FindFirstChild("PlaySound")
  
-	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
+	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound[1],"PlaySound"..config.CustomName)
 	if FC then
 	FC.SoundId = soundidGIT
+	PlaySound=FC
+	RemoveChildren(PlaySound)
+PlaySound=	ResetSound(PlaySound,PlaySoundT)
 	else
 	       PlaySound = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
 	PlaySound.Name = "PlaySound"
-	
+		PlaySound=	ResetSound(PlaySound,PlaySoundT)
 	PlaySound.Parent = entityModel.PrimaryPart
 	end
 	properties = config.EntitySounds.PlaySound[2]
@@ -170,13 +212,16 @@ Spawner.createEntity = function(config)
     if config.EntitySounds.Footsteps then
  FCA=entityModel.PrimaryPart:FindFirstChild("Footsteps")
  
-	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
+	soundidGIT= GetGitSoundID(config.EntitySounds.PlaySound[1],"Footsteps"..config.CustomName)
 	if FCA then
 	FCA.SoundId = soundidGIT
+		Footsteps=FCA
+			RemoveChildren(Footsteps)
+Footsteps=	ResetSound(Footsteps,FootstepsT)
 	else
-	       Footsteps = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
+	       Footsteps = loadSound(config.EntitySounds.PlaySound,"Footsteps"..config.CustomName)
 	Footsteps.Name = "Footsteps"
-	
+	Footsteps=	ResetSound(Footsteps,FootstepsT)
 	Footsteps.Parent = entityModel.PrimaryPart
 	end
 		properties = config.EntitySounds.Footsteps[2]
