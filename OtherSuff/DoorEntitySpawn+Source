@@ -401,7 +401,7 @@ DiedChar=Char:GetAttribute("IsDead") or false
                         -- Mute entity
 
                         warn("mute entity")
-
+                     
                         for _, v in next, entityModel:GetDescendants() do
                             if v.ClassName == "Sound" and v.Playing then
                                 v:Stop()
