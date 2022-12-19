@@ -192,7 +192,7 @@ Spawner.createEntity = function(config)
 	FC.SoundId = soundidGIT
 	PlaySound=FC
 	RemoveChildren(PlaySound)
-PlaySound=	ResetSound(PlaySound,PlaySoundT)
+PlaySound=ResetSound(PlaySound,PlaySoundT)
 	else
 	       PlaySound = loadSound(config.EntitySounds.PlaySound,"PlaySound"..config.CustomName)
 	PlaySound.Name = "PlaySound"
