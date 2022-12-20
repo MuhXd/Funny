@@ -431,7 +431,7 @@ DiedChar=Char:GetAttribute("IsDead") or false
 		       DeathfileName = EntitiesDeaths..".txt"
 			valid = isfile(filePath)
 			if not valid then
-   			 writefile(filePath, "Deaths:0")
+			writefile(filePath..".saveF", "Deaths:0")
 			else
 			Reached=false
 			pcall(function()
@@ -444,11 +444,11 @@ DiedChar=Char:GetAttribute("IsDead") or false
 			Read3=Read3+1
 			Read3=tostring(Read3)
 			print(Read3)
-			writefile(filePath, "Deaths:"..Read3)
+			writefile(filePath..".saveF", "Deaths:"..Read3)
 			Reached=true
 			end)
 			if Reached == false then
-			writefile(filePath, "Deaths:0")
+			writefile(filePath..".saveF", "Deaths:0")
 			end
 			end
                         if #entityTable.Config.CustomDialog > 0 then
