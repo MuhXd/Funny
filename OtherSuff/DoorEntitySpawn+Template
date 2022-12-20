@@ -68,7 +68,6 @@ PlaySound = {
         },
     },
     DiffrentMessages = true,
-
     CustomDialog = {  
         {"You can", "put your", "custom death", "message here."}, -- Death Messages
         {"Stop Dieing"},
