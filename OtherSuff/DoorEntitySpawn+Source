@@ -467,9 +467,9 @@ end)
 			else
 			    None = true
 			    pcall(function()
-			for i,v in pairs(entityTable.Config.CustomDialog) do
+				Deaths = entityTable.Config.CustomDialog[1]
 			    			 None = false
-		break
+
 			end
 
 			    end)
