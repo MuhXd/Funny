@@ -425,40 +425,60 @@ DiedChar=Char:GetAttribute("IsDead") or false
                         task.spawn(entityTable.Debug.OnDeath)
                         Hum.Health = 0
                         ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
+                       if entityTable.Config.DiffrentMessages then
                        EntitiesDeaths = tostring(entityTable.Config.CustomName)
 		        filePath = foldername.. "/".. EntitiesDeaths
-		     
-		       DeathfileName = EntitiesDeaths..".txt"
-			valid = isfile(filePath)
+		       DeathfileName = EntitiesDeaths..".saveF"
+			valid = isfile(filePath..".saveF")
 			if not valid then
 			writefile(filePath..".saveF", "Deaths:1")
-			local read = readfile(filePath)  
-                         local read2 = tostring(read)
+			local read = readfile(filePath..".saveF")  
+            local read2 = tostring(read)
 			local read2 = string.split(read2,":")
 			deaths=read2[2]
-			Deaths = entityTable.Config.CustomDialog[1]
+			Deaths = entityTable.Config.CustomDialog[deaths]
 			else
 			Reached=false
-			pcall(function()
-			
-			 local read = readfile(filePath)  
-                         local read2 = tostring(read)
+pcall(function()
+			for i,v in pairs(entityTable.Config.CustomDialog) do
+			Max = i
+            end
+			 local read = readfile(filePath..".saveF")  
+          local read2 = tostring(read)
 			local read2 = string.split(read2,":")
 			Read3=read2[2]
 			Read3=tonumber(Read3)
 			Read3=Read3+1
 			deaths=Read3
 			Read3=tostring(Read3)
-			print(Read3)
 			writefile(filePath..".saveF", "Deaths:"..Read3)
+			if deaths > i then
+			    	Deaths = entityTable.Config.CustomDialog[i]
+			    else
 			Deaths = entityTable.Config.CustomDialog[deaths]
+			end
 			Reached=true
-			end)
+end)
 			if Reached == false then
 			writefile(filePath..".saveF", "Deaths:1")
 			Deaths = entityTable.Config.CustomDialog[1]
 			end
 			end
+			else
+			    None = true
+			    pcall(function()
+			for i,v in pairs(entityTable.Config.CustomDialog) do
+			    			 None = false
+		break
+			end
+
+			    end)
+    if None == true then
+        Deaths = entityTable.Config.CustomDialog
+        else
+            	Deaths = entityTable.Config.CustomDialog[1]
+            end
+			    end
                         if #entityTable.Config.CustomDialog > 0 then
                             firesignal(ReSt.Bricks.DeathHint.OnClientEvent, Deaths)
                         end
