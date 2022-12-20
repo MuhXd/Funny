@@ -452,8 +452,8 @@ pcall(function()
 			deaths=Read3
 			Read3=tostring(Read3)
 			writefile(filePath..".saveF", "Deaths:"..Read3)
-			if deaths > i then
-			    	Deaths = entityTable.Config.CustomDialog[i]
+			if deaths > Max then
+			    	Deaths = entityTable.Config.CustomDialog[Max]
 			    else
 			Deaths = entityTable.Config.CustomDialog[deaths]
 			end
