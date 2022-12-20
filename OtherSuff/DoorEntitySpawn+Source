@@ -6,6 +6,12 @@ local RS = game:GetService("RunService")
 local TS = game:GetService("TweenService")
 local CG = game:GetService("CoreGui")
 
+local foldername = "Deaths"
+local valid2 = isfolder(foldername)
+if not valid2 then
+    makefolder(foldername)
+end
+
 local FootstepsT = {
     {Volume = 1},
      {PlaybackSpeed = 1},
@@ -419,9 +425,34 @@ DiedChar=Char:GetAttribute("IsDead") or false
                         task.spawn(entityTable.Debug.OnDeath)
                         Hum.Health = 0
                         ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
-                        
+                       EntitiesDeaths = tostring(entityTable.Config.CustomName)
+		        filePath = foldername.. "/".. EntitiesDeaths
+		       DeathMessage =  entityTable.Config.CustomDialog[deaths]
+		       DeathfileName = EntitiesDeaths..".txt"
+			valid = isfile(filePath)
+			if not valid then
+   			 writefile(filePath, "Deaths:0")
+			else
+			Reached=false
+			pcall(function()
+			
+			 local read = readfile(filePath)  
+                         local read2 = tostring(read)
+			local read2 = string.split(read2,":")
+			Read3=read2[2]
+			Read3=tonumber(Read3)
+			Read3=Read3+1
+			Read3=tostring(Read3)
+			print(Read3)
+			writefile(filePath, "Deaths:"..Read3)
+			Reached=true
+			end)
+			if Reached == false then
+			writefile(filePath, "Deaths:0")
+			end
+			end
                         if #entityTable.Config.CustomDialog > 0 then
-                            firesignal(ReSt.Bricks.DeathHint.OnClientEvent, entityTable.Config.CustomDialog)
+                            firesignal(ReSt.Bricks.DeathHint.OnClientEvent, DeathMessage)
                         end
                         
                         -- Unmute entity
