@@ -510,6 +510,11 @@ Spawner.runJumpscare = function(config,Fullconfig)
     if config.Sound2 then
         sound2 = loadSound(config.Sound2,"Sound2"..Fullconfig.CustomName)
     end
+    if not config.Type then
+        Type="1"
+    else
+        Type = tostring(config.Type)
+    end
 
     -- UI Construction
 
@@ -539,14 +544,37 @@ Spawner.runJumpscare = function(config,Fullconfig)
     Background.Parent = JumpscareGui
     JumpscareGui.Parent = CG
     
+     
     -- Tease
-
+    local JumpscareContrast = Instance.new("ColorCorrectionEffect",game.Lighting)
     local teaseConfig = config.Tease
     local absHeight = JumpscareGui.AbsoluteSize.Y
     local minTeaseSize = absHeight / 5
     local maxTeaseSize = absHeight / 2.5
-
-    if teaseConfig[1] then
+    local Full = Instance.new("ImageLabel")
+        Full.Name = "Full"
+        Full.BackgroundTransparency = 1
+		Full.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Full.Size = UDim2.new(1.12197304, 0, 1.44743586, 0)
+		Full.ImageTransparency = 1
+		Full.Parent = Background
+----------------------------------------------------------------------
+--[[    Gui's Effects
+]]
+  
+   if Type == "pop" or Type ==  "2" then
+            JumpscareEnd=Face
+            Background.Transparency = 1
+            JumpscareEnd.Image = image2
+			game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
+			game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+            task.wait(0.75)
+            JumpscareGui:Destroy()
+            Full:Destroy()
+            sound2:Play()
+            return "Effect Finished"
+        else
+            if teaseConfig[1] then
         local teaseAmount = math.random(teaseConfig.Min, teaseConfig.Max)
 
         sound1:Play()
@@ -560,6 +588,7 @@ Spawner.runJumpscare = function(config,Fullconfig)
 
         task.wait(math.random(100, 200) / 100)
     end
+end
     
     -- Flashing
 
@@ -590,7 +619,7 @@ Spawner.runJumpscare = function(config,Fullconfig)
     end
 
     -- Jumpscare
-    
+    if Type == "Normal" or Type == "1" then
     Face.Image = image2
     Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
     sound2:Play()
@@ -606,6 +635,23 @@ Spawner.runJumpscare = function(config,Fullconfig)
     if sound2 then
         sound2:Destroy()
     end
+else
+    Face.Image = image2
+    Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
+    sound2:Play()
+    
+    TS:Create(Face, TweenInfo.new(0.75), {Size = UDim2.new(0, absHeight * 3, 0,  absHeight * 3), ImageTransparency = 0.5}):Play()
+    task.wait(0.75)
+    JumpscareGui:Destroy()
+    
+    if sound1 then
+        sound1:Destroy()
+    end
+    
+    if sound2 then
+        sound2:Destroy()
+    end
+end
 end
 
 -- Scripts
