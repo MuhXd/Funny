@@ -67,7 +67,14 @@ PlaySound = {
             },
         },
     },
-    CustomDialog = {"You can", "put your", "custom death", "message here."}, -- Custom death message
+    DiffrentMessages = true,
+
+    CustomDialog = {  
+        {"You can", "put your", "custom death", "message here."}, -- Death Messages
+        {"Stop Dieing"},
+        {"Bruh", "Use what you have learned from Rush!"},
+        {"It seems like Template is causing quite the ruckus...", "Hide in a closet or bed as quickly as possible!"}
+    }
 })
 
 -----[[ Advanced Sctipting ]]-----
