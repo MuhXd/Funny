@@ -639,7 +639,8 @@ Spawner.runJumpscare = function(config,Fullconfig)
             JumpscareEnd.Image = image2
 	game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
 	game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
-            JumpscareGui:Destroy()
+               task.wait(0.75)
+	   JumpscareGui:Destroy()
             Full:Destroy()
             sound2:Play()
             return "Effect Finished"
