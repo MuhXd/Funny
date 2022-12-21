@@ -625,14 +625,25 @@ Spawner.runJumpscare = function(config,Fullconfig)
             JumpscareEnd=Face
             Background.Transparency = 1
             JumpscareEnd.Image = image2
-			game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
-			game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+	game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
+	game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
             task.wait(0.75)
             JumpscareGui:Destroy()
             Full:Destroy()
             sound2:Play()
             return "Effect Finished"
-        else
+        elseif Type == "endlessdoorsrebound" or Type ==  "3" then
+            JumpscareEnd=Face
+	    Full.Size = UDim2.new(0.8, 0, 0.8, 0)
+            Background.Transparency = 1
+            JumpscareEnd.Image = image2
+	game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
+	game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+            JumpscareGui:Destroy()
+            Full:Destroy()
+            sound2:Play()
+            return "Effect Finished"
+	    else
             if teaseConfig[1] then
         local teaseAmount = math.random(teaseConfig.Min, teaseConfig.Max)
 
