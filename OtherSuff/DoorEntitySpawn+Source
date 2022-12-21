@@ -634,6 +634,7 @@ Spawner.runJumpscare = function(config,Fullconfig)
             return "Effect Finished"
         elseif Type == "endlessdoorsrebound" or Type ==  "3" then
             JumpscareEnd=Face
+	     JumpscareEnd.Size = UDim2.new(0, 0.1, 0, 0.1)
 	    Full.Size = UDim2.new(0.8, 0, 0.8, 0)
             Background.Transparency = 1
             JumpscareEnd.Image = image2
