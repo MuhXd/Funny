@@ -44,7 +44,7 @@ PlaySound = {
     Jumpscare = {
         true, -- Enabled/Disabled
         {
-            Type = "2", -- "Normal" or 1 | "Pop" or 2 | More coming Soon
+            Type = "2", -- "Normal" or 1 | "Pop" or 2 | "endlessdoorsrebound" or 3 | More coming Soon
             Image1 = "rbxassetid://10483855823", -- Image1 url
             Image2 = "rbxassetid://10483999903", -- Image2 url
             Shake = true,
