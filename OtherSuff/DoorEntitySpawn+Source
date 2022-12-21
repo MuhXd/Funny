@@ -633,10 +633,11 @@ Spawner.runJumpscare = function(config,Fullconfig)
             return "Effect Finished"
         elseif Type == "endlessdoorsrebound" or Type ==  "3" then
             JumpscareEnd=Face
-	     JumpscareEnd.Size = UDim2.new(0, 0.3, 0, 0.3)
 	    Full.Size = UDim2.new(0.8, 0, 0.8, 0)
             Background.Transparency = 1
             JumpscareEnd.Image = image2
+            	     JumpscareEnd.Size = UDim2.new(0, 0.3, 0, 0.3)
+            	     	JumpscareEnd.Position = UDim2.new(0.5, 0, 0.5, 0)
 	       task.wait(1.75)
 	game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
 	game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
