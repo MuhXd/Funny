@@ -27,5 +27,5 @@ return {
         {}
     },
     DiffrentMessages = false,
-    CustomDialog = {},
+    CustomDialog = {{}},
 }
