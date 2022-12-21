@@ -470,8 +470,7 @@ end)
 				Deaths = entityTable.Config.CustomDialog[1]
 			    			 None = false
 
-			end
-
+		
 			    end)
     if None == true then
         Deaths = entityTable.Config.CustomDialog
