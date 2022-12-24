@@ -637,7 +637,7 @@ Spawner.runJumpscare = function(config,Fullconfig)
             Full:Destroy()
             sound2:Play()
             return "Effect Finished"
-        elseif Type == "endlessdoorsrebound" or Type ==  "3" then
+        elseif Type == "endlessdoorsrebound" or Type ==  "3"  or Type == 'Rebound' then
             JumpscareEnd=Face
 	    Full.Size = UDim2.new(0.8, 0, 0.8, 0)
           Background.Transparency = 1
