@@ -38,7 +38,7 @@ local Smiles = {
     Title = "Income The Frowners",
     Desc = "Stop Smiling",
     Reason = "Encounter and Survive Smiler",
-    Image = "https://tr.rbxcdn.com/74de4e7b5e39c15126ca858f0ad19c80/420/420/Image/Png",
+    Image = "https://tr.rbxcdn.com/533cbe35b1cf3d4e5d4f99278978563f/150/150/Image/Png",
     id = 4,
 }
 
@@ -46,7 +46,7 @@ local SmilesDie = {
     Title = "Smile to Fail",
     Desc = "Don't Smile",
     Reason = "Encounter And Dont Survive Smiler",
-    Image = "https://tr.rbxcdn.com/74de4e7b5e39c15126ca858f0ad19c80/420/420/Image/Png",
+    Image = "https://tr.rbxcdn.com/533cbe35b1cf3d4e5d4f99278978563f/150/150/Image/Png",
     id = 5,
 }
 
@@ -54,7 +54,7 @@ local NightmareRush ={
     Title = "Rush From Your Nightmares",
     Desc = "Don't Be fooled",
     Reason = "Encounter And Survive Nightmare Rush",
-    Image = "https://tr.rbxcdn.com/74de4e7b5e39c15126ca858f0ad19c80/420/420/Image/Png",
+    Image = "https://tr.rbxcdn.com/533cbe35b1cf3d4e5d4f99278978563f/150/150/Image/Png",
     id = 6,
 }
 
@@ -62,7 +62,7 @@ local NightmareAmbush ={
     Title = "Ambush But Even Harder",
     Desc = "Don't Be fooled",
     Reason = "Encounter And Survive Nightmare Ambush",
-    Image = "https://tr.rbxcdn.com/74de4e7b5e39c15126ca858f0ad19c80/420/420/Image/Png",
+    Image = "https://tr.rbxcdn.com/533cbe35b1cf3d4e5d4f99278978563f/150/150/Image/Png",
     id = 7,
 }
 
@@ -70,7 +70,7 @@ local NightmareAmbush ={
     Title = "Ambush But Even Harder",
     Desc = "Don't Be fooled",
     Reason = "Encounter And Survive Nightmare Ambush",
-    Image = "https://tr.rbxcdn.com/74de4e7b5e39c15126ca858f0ad19c80/420/420/Image/Png",
+    Image = "https://tr.rbxcdn.com/533cbe35b1cf3d4e5d4f99278978563f/150/150/Image/Png",
     id = 8,
 }
 
