@@ -407,19 +407,12 @@ Spawner.runEntity = function(entityTable)
 						ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "Anti Crucifixs (Anti Cheat)"
 						firesignal(ReSt.Bricks.DeathHint.OnClientEvent, {"No Crucifixs (Or Ways of Invincibity) Are aloud With This Entity"})
 					end
-					local Die = false
-					if not Char:GetAttribute("Hiding") and not entityTable.Config.NoHiding then
-						if entityTable.Config.NoDieOnCrouching then
-							if not ModuleScripts.MainGame.crouching then
-								 Die = true
-							else
-								Die = false
-								end
-						else
-							Die = true
-							end
+				
+			
+				-- Char:GetAttribute("Hiding")
+				
 						if not Char:GetAttribute("Invincible") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
-							if  Die or not entityTable.Config.NoDieOnCrouching then
+							if entityTable.Config.NoHiding and Char:GetAttribute("Hiding") or not ModuleScripts.MainGame.crouching and entityTable.Config.NoDieOnCrouching or not Char:GetAttribute("Hiding") and not entityTable.Config.NoHiding then
 							task.spawn(function()
 							Char:SetAttribute("IsDead", true)
 
@@ -521,7 +514,6 @@ Spawner.runEntity = function(entityTable)
 						end)
 					end
 				end
-			end
 			end
 			end
 			end
@@ -769,4 +761,5 @@ task.spawn(function()
 		task.wait(0.5)
 	end
 end)
+-- Returns the Spawner
 return Spawner
