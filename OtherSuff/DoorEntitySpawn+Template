@@ -89,27 +89,27 @@ print("Hiding: "..tostring(Hiding))
 end
        
 entity.Debug.OnEntitySpawned = function()
-    print("Entity has spawned:",entityTable)
+    print("Entity has spawned:")
 end
 
 entity.Debug.OnEntityDespawned = function()
-    print("Entity has despawned:",entityTable)
+    print("Entity has despawned:")
 end
 
 entity.Debug.OnEntityStartMoving = function()
-    print("Entity has started moving:",entityTable)
+    print("Entity has started moving:")
 end
 
 entity.Debug.OnEntityFinishedRebound = function()
-    print("Entity has finished rebound:",entityTable)
+    print("Entity has finished rebound:")
 end
 
 entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
-    print("Entity:",entityTable, "has entered room:", room)
+    print("Entity:", "has entered room:",room)
 end
 
 entity.Debug.OnLookAtEntity = function()
-    print("Player has looked at entity:",entityTable)
+    print("Player has looked at entity:")
 end
 
 entity.Debug.OnDeath = function()
