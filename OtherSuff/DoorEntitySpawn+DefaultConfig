@@ -8,6 +8,7 @@ return {
     KillRange = 50,
     AntiCrucifix = false,
     OneRoom = false,
+    DieOnLook = false,
     BreakLights = true,
     BackwardsMovement = false,
     FlickerLights = {
