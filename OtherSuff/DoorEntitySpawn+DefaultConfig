@@ -11,6 +11,12 @@ return {
     DieOnLook = false,
     BreakLights = true,
     BackwardsMovement = false,
+     MovementDeath = {
+        false, -- Truned On!
+        1, ---Mode '1'='Instant' | Mode '2' = 'Looked'
+        0, -- MoveDirMax
+    },
+    
     FlickerLights = {
         true,
         1
