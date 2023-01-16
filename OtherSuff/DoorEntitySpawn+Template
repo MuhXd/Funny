@@ -19,7 +19,7 @@ local entity = Spawner.createEntity({
     BreakLights = true,
     BackwardsMovement = false,
      MovementDeath = {
-        false, -- Turned On!
+        true, -- Turned On?
         '1',  --- 1'= 'Instant Without Being Looked out' | '2' = 'With Being Looked At'
     },
     FlickerLights = {
