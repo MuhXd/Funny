@@ -117,6 +117,14 @@ function dragEntity(entityTable,entityModel, pos, speed)
 			local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos
 
 			if diff.Magnitude > 0.1 then
+			if entityTable.Config.MovementDeath[1] then
+			if entityTable.Config.MovementDeath[2] == '1' then
+			if Hum.MoveDirection ~= Vector3.new(0,0,0) then
+			Spawner.SendingDie(entityTable,entityModel)
+			end
+			end 
+			
+			end
 				task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetCollisionPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil,entityModel)
 				entityModel:SetPrimaryPartCFrame(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))
 			else
@@ -255,8 +263,7 @@ Spawner.createEntity = function(config)
 			OnEntitySpawned = function() end,
 			OnEntityDespawned = function() end,
 			OnEntityStartMoving = function() end,
-			OnEntityFinishedRebound = function() end,
-			OnEntityEnteredRoom = function() end,
+r			OnEntityEnteredRoom = function() end,
 			OnLookAtEntity = function() end,
 			OnDeath = function() end,
 			NothidingKill = function() end,
@@ -398,6 +405,13 @@ Spawner.runEntity = function(entityTable)
 
 				if onScreen then
 					task.spawn(entityTable.Debug.OnLookAtEntity,entityModel)
+			if entityTable.Config.MovementDeath[1] then
+			if entityTable.Config.MovementDeath[2] == '2' then
+			if Hum.MoveDirection ~= Vector3.new(0,0,0) then
+			Spawner.SendingDie(entityTable,entityModel)
+			end
+			end 
+			end
 					if entityTable.Config.DieOnLook then
 					    	Spawner.SendingDie(entityTable,entityModel)
 					    end
