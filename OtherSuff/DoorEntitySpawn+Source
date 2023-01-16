@@ -368,7 +368,6 @@ Spawner.runEntity = function(entityTable)
 					if floorRay:IsDescendantOf(room) and not table.find(enteredRooms, room) then
 						enteredRooms[#enteredRooms + 1] = room
 						task.spawn(entityTable.Debug.OnEntityEnteredRoom, room, entityModel)
-
 						-- Break lights
 
 						if entityTable.Config.BreakLights then
