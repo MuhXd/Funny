@@ -117,14 +117,14 @@ function dragEntity(entityTable,entityModel, pos, speed)
 			local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos
 
 			if diff.Magnitude > 0.1 then
-			if entityTable.Config.MovementDeath[1] then
-			if entityTable.Config.MovementDeath[2] == '1' then
-			if Hum.MoveDirection ~= Vector3.new(0,0,0) then
-			Spawner.SendingDie(entityTable,entityModel)
-			end
-			end 
-			
-			end
+				if entityTable.Config.MovementDeath[1] then
+					if entityTable.Config.MovementDeath[2] == '1' then
+						if Hum.MoveDirection ~= Vector3.new(0,0,0) then
+							Spawner.SendingDie(entityTable,entityModel)
+						end
+					end 
+
+				end
 				task.spawn(entityTable.Debug.OnEntityMoving,Char:GetAttribute("Invincible") or false,Char:GetAttribute("Invincible") or false,(GetCollisionPos().Position - entityModel.PrimaryPart.Position).Magnitude or nil,entityModel)
 				entityModel:SetPrimaryPartCFrame(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))
 			else
@@ -263,7 +263,7 @@ Spawner.createEntity = function(config)
 			OnEntitySpawned = function() end,
 			OnEntityDespawned = function() end,
 			OnEntityStartMoving = function() end,
-r			OnEntityEnteredRoom = function() end,
+		    OnEntityEnteredRoom = function() end,
 			OnLookAtEntity = function() end,
 			OnDeath = function() end,
 			NothidingKill = function() end,
@@ -324,11 +324,11 @@ Spawner.runEntity = function(entityTable)
 
 	entityModel:SetPrimaryPartCFrame(entityNodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
 	entityModel.Parent = workspace
-				
+
 	task.spawn(entityTable.Debug.OnEntitySpawned,entityModel)
 
 	-- Mute entity on spawn
-		
+
 	if CG:FindFirstChild("JumpscareGui") or (Plr.PlayerGui.MainUI.Death.HelpfulDialogue.Visible and not Plr.PlayerGui.MainUI.DeathPanelDead.Visible) then
 		warn("on death screen, mute entity")
 
@@ -350,13 +350,13 @@ Spawner.runEntity = function(entityTable)
 	task.wait(entityTable.Config.DelayTime)
 
 	local enteredRooms = {}
-		
-		 
+
+
 	entityConnections.movementTick = RS.Stepped:Connect(function()
 		if entityModel.Parent and not entityModel:GetAttribute("NoAI") then
 			local entityPos = entityModel.PrimaryPart.Position
-		
-		
+
+
 			local rootPos = getPlayerRoot().Position
 			local floorRay = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, Vector3.new(0, -10, 0)), {entityModel, Char})
 			local playerInSight = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, rootPos - entityPos), {entityModel, Char}) == nil
@@ -404,16 +404,16 @@ Spawner.runEntity = function(entityTable)
 
 				if onScreen then
 					task.spawn(entityTable.Debug.OnLookAtEntity,entityModel)
-			if entityTable.Config.MovementDeath[1] then
-			if entityTable.Config.MovementDeath[2] == '2' then
-			if Hum.MoveDirection ~= Vector3.new(0,0,0) then
-			Spawner.SendingDie(entityTable,entityModel)
-			end
-			end 
-			end
+					if entityTable.Config.MovementDeath[1] then
+						if entityTable.Config.MovementDeath[2] == '2' then
+							if Hum.MoveDirection ~= Vector3.new(0,0,0) then
+								Spawner.SendingDie(entityTable,entityModel)
+							end
+						end 
+					end
 					if entityTable.Config.DieOnLook then
-					    	Spawner.SendingDie(entityTable,entityModel)
-					    end
+						Spawner.SendingDie(entityTable,entityModel)
+					end
 				end
 
 				-- Kill player
@@ -431,9 +431,9 @@ Spawner.runEntity = function(entityTable)
 					local Config = entityTable.Config
 					if not Char:GetAttribute("Invincible") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then
 						if Config.NoHiding and Char:GetAttribute("Hiding") or not ModuleScripts.MainGame.crouching and config.NoDieOnCrouching or not Char:GetAttribute("Hiding") and not config.NoHiding then
-					Spawner.SendingDie(entityTable,entityModel)
+							Spawner.SendingDie(entityTable,entityModel)
 						end
-						end
+					end
 				end
 			end
 		end
@@ -443,353 +443,353 @@ Spawner.runEntity = function(entityTable)
 
 	-- Char:GetAttribute("Hiding")
 	Spawner.SendingDie = function(entityTable,entityModel)
-	    task.spawn(function()
-		Char:SetAttribute("IsDead", true)
-					-- Mute entity
+		task.spawn(function()
+			Char:SetAttribute("IsDead", true)
+			-- Mute entity
 
-					warn("mute entity")
+			warn("mute entity")
 
-					for _, v in next, entityModel:GetDescendants() do
-						if v.ClassName == "Sound" and v.Playing then
-							v:Stop()
-						end
-					end
-
-					-- Jumpscare
-
-					if entityTable.Config.Jumpscare[1] then
-						Spawner.runJumpscare(entityTable.Config.Jumpscare[2],entityTable.Config)
-					end
-
-					-- Death handling
-
-					task.spawn(entityTable.Debug.OnDeath,entityModel)
-					Hum.Health = 0
-					ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
-					if entityTable.Config.DiffrentMessages then
-						EntitiesDeaths = tostring(entityTable.Config.CustomName)
-						filePath = foldername.. "/".. EntitiesDeaths
-						DeathfileName = EntitiesDeaths..".saveF"
-						valid = isfile(filePath..".saveF")
-						if not valid then
-							writefile(filePath..".saveF", "Deaths:1")
-							local read = readfile(filePath..".saveF")  
-							local read2 = tostring(read)
-							local read2 = string.split(read2,":")
-							deaths=read2[2]
-							Deaths = entityTable.Config.CustomDialog[deaths]
-						else
-							Reached=false
-							pcall(function()
-								for i,v in pairs(entityTable.Config.CustomDialog) do
-									Max = i
-								end
-								local read = readfile(filePath..".saveF")  
-								local read2 = tostring(read)
-								local read2 = string.split(read2,":")
-								Read3=read2[2]
-								Read3=tonumber(Read3)
-								Read3=Read3+1
-								deaths=Read3
-								Read3=tostring(Read3)
-								writefile(filePath..".saveF", "Deaths:"..Read3)
-								if deaths > Max then
-									Deaths = entityTable.Config.CustomDialog[Max]
-								else
-									Deaths = entityTable.Config.CustomDialog[deaths]
-								end
-								Reached=true
-							end)
-							if Reached == false then
-								writefile(filePath..".saveF", "Deaths:1")
-								Deaths = entityTable.Config.CustomDialog[1]
-							end
-						end
-					else
-						None = true
-						pcall(function()
-							Deaths = entityTable.Config.CustomDialog[1]
-							None = false
-
-
-						end)
-						if None == true then
-							Deaths = entityTable.Config.CustomDialog
-						else
-							Deaths = entityTable.Config.CustomDialog[1]
-						end
-					end
-					if #entityTable.Config.CustomDialog > 0 then
-						firesignal(ReSt.Bricks.DeathHint.OnClientEvent, Deaths)
-					end
-
-
-					-- Unmute entity
-
-					task.spawn(function()
-						repeat task.wait() until Plr.PlayerGui.MainUI.DeathPanelDead.Visible
-
-						warn("unmute entity:", entityModel)
-
-						for _, v in next, entityModel:GetDescendants() do
-							if v.ClassName == "Sound" then
-								local oldVolume = v.Volume
-
-								v.Volume = 0
-								v:Play()
-								TS:Create(v, TweenInfo.new(2), {Volume = oldVolume}):Play()
-							end
-							end
-
-					end)
-					end)
-					end
-
-	end
-			
-				task.spawn(entityTable.Debug.OnEntityStartMoving,entityModel)
-
-				-- Cycles
-
-				local cyclesConfig = entityTable.Config.Cycles
-
-				if entityTable.Config.BackwardsMovement then
-					local inverseNodes = {}
-
-					for nodeIdx = #entityNodes, 1, -1 do
-						inverseNodes[#inverseNodes + 1] = entityNodes[nodeIdx]
-					end
-
-					entityNodes = inverseNodes
+			for _, v in next, entityModel:GetDescendants() do
+				if v.ClassName == "Sound" and v.Playing then
+					v:Stop()
 				end
-
-				for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
-					for nodeIdx = 1, #entityNodes, 1 do
-						dragEntity(entityTable,entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
-					end
-					if cyclesConfig.Max > 1 then
-						for nodeIdx = #entityNodes, 1, -1 do
-							dragEntity(entityTable,entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
-						end
-					end
-
-					-- Rebound finished
-
-					task.spawn(entityTable.Debug.OnEntityFinishedRebound,entityModel)
-
-					if cycle < cyclesConfig.Max then
-						task.wait(cyclesConfig.WaitTime)
-					end
-				end
-				-- Destroy
-
-				if not entityModel:GetAttribute("NoAI") then
-					for _, v in next, entityConnections do
-						v:Disconnect()
-					end
-
-					entityModel:Destroy()
-					task.spawn(entityTable.Debug.OnEntityDespawned,entityModel)
-				end
-			
-		
-
-
-		Spawner.runJumpscare = function(config,Fullconfig)
-			-- Variables
-
-			local image1 = LoadCustomAsset(config.Image1)
-			local image2 = LoadCustomAsset(config.Image2)
-			local sound1, sound2 = nil, nil
-
-			if config.Sound1 then
-				sound1 = loadSound(config.Sound1,"Sound1"..Fullconfig.CustomName)
-			end
-
-			if config.Sound2 then
-				sound2 = loadSound(config.Sound2,"Sound2"..Fullconfig.CustomName)
-			end
-			if not config.Type then
-				Type="1"
-			else
-				Type = tostring(config.Type)
-			end
-
-			-- UI Construction
-
-			local JumpscareGui = Instance.new("ScreenGui")
-			local Background = Instance.new("Frame")
-			local Face = Instance.new("ImageLabel")
-
-			JumpscareGui.Name = "JumpscareGui"
-			JumpscareGui.IgnoreGuiInset = true
-			JumpscareGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-			Background.Name = "Background"
-			Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Background.BorderSizePixel = 0
-			Background.Size = UDim2.new(1, 0, 1, 0)
-			Background.ZIndex = 999
-
-			Face.Name = "Face"
-			Face.AnchorPoint = Vector2.new(0.5, 0.5)
-			Face.BackgroundTransparency = 1
-			Face.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Face.ResampleMode = Enum.ResamplerMode.Pixelated
-			Face.Size = UDim2.new(0, 150, 0, 150)
-			Face.Image = image1
-
-			Face.Parent = Background
-			Background.Parent = JumpscareGui
-			JumpscareGui.Parent = CG
-
-
-			-- Tease
-			local JumpscareContrast = Instance.new("ColorCorrectionEffect",game.Lighting)
-			local teaseConfig = config.Tease
-			local absHeight = JumpscareGui.AbsoluteSize.Y
-			local minTeaseSize = absHeight / 5
-			local maxTeaseSize = absHeight / 2.5
-			local Full = Instance.new("ImageLabel")
-			Full.Name = "Full"
-			Full.BackgroundTransparency = 1
-			Full.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Full.Size = UDim2.new(1.12197304, 0, 1.44743586, 0)
-			Full.ImageTransparency = 1
-			Full.Parent = Background
-			----------------------------------------------------------------------
---[[    Gui's Effects
-]]
-
-			if Type == "pop" or Type ==  "2" then
-				JumpscareEnd=Face
-				Background.Transparency = 1
-				JumpscareEnd.Image = image2
-				game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
-				game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
-				task.wait(0.75)
-				JumpscareGui:Destroy()
-				Full:Destroy()
-				sound2:Play()
-				return "Effect Finished"
-			elseif Type == "endlessdoorsrebound" or Type ==  "3"  or Type == 'Rebound' then
-				JumpscareEnd=Face
-				Full.Size = UDim2.new(0.8, 0, 0.8, 0)
-				Background.Transparency = 1
-				JumpscareEnd.Image = image1
-				Full.Position = UDim2.new(0.5, 0, 0.5, 0)
-				Full.Size = UDim2.new(0.03, 0, 0.05, 0)
-				game.TweenService:Create(JumpscareEnd,TweenInfo.new(0),{Size = Full.Size,Position = Full.Position}):Play()
-				task.wait(0.5)
-				JumpscareEnd.Image = image2
-				Full.Position = UDim2.new(0.5, 0, 0.5, 0)
-				Full.Size = UDim2.new(0.8, 0, 0.8, 0)
-				game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position}):Play()
-				game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
-				task.wait(0.75)
-				JumpscareGui:Destroy()
-				Full:Destroy()
-				sound2:Play()
-				return "Effect Finished"
-			else
-				if teaseConfig[1] then
-					local teaseAmount = math.random(teaseConfig.Min, teaseConfig.Max)
-
-					sound1:Play()
-
-					for _ = teaseConfig.Min, teaseAmount do
-						task.wait(math.random(100, 200) / 100)
-
-						local growFactor = (maxTeaseSize - minTeaseSize) / teaseAmount
-						Face.Size = UDim2.new(0, Face.AbsoluteSize.X + growFactor, 0, Face.AbsoluteSize.Y + growFactor)
-					end
-
-					task.wait(math.random(100, 200) / 100)
-				end
-			end
-
-			-- Flashing
-
-			if config.Flashing[1] then
-				task.spawn(function()
-					while JumpscareGui.Parent do
-						Background.BackgroundColor3 = config.Flashing[2]
-						task.wait(math.random(25, 100) / 1000)
-						Background.BackgroundColor3 = Color3.new(0, 0, 0)
-						task.wait(math.random(25, 100) / 1000)
-					end
-				end)
-			end
-
-			-- Shaking
-
-			if config.Shake then
-				task.spawn(function()
-					local origin = Face.Position
-
-					while JumpscareGui.Parent do
-						Face.Position = origin + UDim2.new(0, math.random(-10, 10), 0, math.random(-10, 10))
-						Face.Rotation = math.random(-5, 5)
-
-						task.wait()
-					end
-				end)
 			end
 
 			-- Jumpscare
-			if Type == "Normal" or Type == "1" then
-				Face.Image = image2
-				Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
-				sound2:Play()
 
-				TS:Create(Face, TweenInfo.new(0.75), {Size = UDim2.new(0, absHeight * 3, 0,  absHeight * 3), ImageTransparency = 0.5}):Play()
-				task.wait(0.75)
-				JumpscareGui:Destroy()
+			if entityTable.Config.Jumpscare[1] then
+				Spawner.runJumpscare(entityTable.Config.Jumpscare[2],entityTable.Config)
+			end
 
-				if sound1 then
-					sound1:Destroy()
-				end
+			-- Death handling
 
-				if sound2 then
-					sound2:Destroy()
+			task.spawn(entityTable.Debug.OnDeath,entityModel)
+			Hum.Health = 0
+			ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
+			if entityTable.Config.DiffrentMessages then
+				EntitiesDeaths = tostring(entityTable.Config.CustomName)
+				filePath = foldername.. "/".. EntitiesDeaths
+				DeathfileName = EntitiesDeaths..".saveF"
+				valid = isfile(filePath..".saveF")
+				if not valid then
+					writefile(filePath..".saveF", "Deaths:1")
+					local read = readfile(filePath..".saveF")  
+					local read2 = tostring(read)
+					local read2 = string.split(read2,":")
+					deaths=read2[2]
+					Deaths = entityTable.Config.CustomDialog[deaths]
+				else
+					Reached=false
+					pcall(function()
+						for i,v in pairs(entityTable.Config.CustomDialog) do
+							Max = i
+						end
+						local read = readfile(filePath..".saveF")  
+						local read2 = tostring(read)
+						local read2 = string.split(read2,":")
+						Read3=read2[2]
+						Read3=tonumber(Read3)
+						Read3=Read3+1
+						deaths=Read3
+						Read3=tostring(Read3)
+						writefile(filePath..".saveF", "Deaths:"..Read3)
+						if deaths > Max then
+							Deaths = entityTable.Config.CustomDialog[Max]
+						else
+							Deaths = entityTable.Config.CustomDialog[deaths]
+						end
+						Reached=true
+					end)
+					if Reached == false then
+						writefile(filePath..".saveF", "Deaths:1")
+						Deaths = entityTable.Config.CustomDialog[1]
+					end
 				end
 			else
-				Face.Image = image2
-				Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
-				sound2:Play()
+				None = true
+				pcall(function()
+					Deaths = entityTable.Config.CustomDialog[1]
+					None = false
 
-				TS:Create(Face, TweenInfo.new(0.75), {Size = UDim2.new(0, absHeight * 3, 0,  absHeight * 3), ImageTransparency = 0.5}):Play()
-				task.wait(0.75)
-				JumpscareGui:Destroy()
 
-				if sound1 then
-					sound1:Destroy()
-				end
-
-				if sound2 then
-					sound2:Destroy()
+				end)
+				if None == true then
+					Deaths = entityTable.Config.CustomDialog
+				else
+					Deaths = entityTable.Config.CustomDialog[1]
 				end
 			end
-		end
+			if #entityTable.Config.CustomDialog > 0 then
+				firesignal(ReSt.Bricks.DeathHint.OnClientEvent, Deaths)
+			end
 
-		-- Scripts
 
-		task.spawn(function()
-			while true do
-				local inSession = false
+			-- Unmute entity
 
-				for _, v in next, workspace:GetChildren() do
-					if v.Name == "RushMoving" or v.Name == "AmbushMoving" or v:GetAttribute("IsCustomEntity") then
-						inSession = true
-						break
+			task.spawn(function()
+				repeat task.wait() until Plr.PlayerGui.MainUI.DeathPanelDead.Visible
+
+				warn("unmute entity:", entityModel)
+
+				for _, v in next, entityModel:GetDescendants() do
+					if v.ClassName == "Sound" then
+						local oldVolume = v.Volume
+
+						v.Volume = 0
+						v:Play()
+						TS:Create(v, TweenInfo.new(2), {Volume = oldVolume}):Play()
 					end
 				end
 
-				ReSt.GameData.ChaseInSession.Value = inSession
-				task.wait(0.5)
+			end)
+		end)
+	end
+
+end
+
+task.spawn(entityTable.Debug.OnEntityStartMoving,entityModel)
+
+-- Cycles
+
+local cyclesConfig = entityTable.Config.Cycles
+
+if entityTable.Config.BackwardsMovement then
+	local inverseNodes = {}
+
+	for nodeIdx = #entityNodes, 1, -1 do
+		inverseNodes[#inverseNodes + 1] = entityNodes[nodeIdx]
+	end
+
+	entityNodes = inverseNodes
+end
+
+for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
+	for nodeIdx = 1, #entityNodes, 1 do
+		dragEntity(entityTable,entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
+	end
+	if cyclesConfig.Max > 1 then
+		for nodeIdx = #entityNodes, 1, -1 do
+			dragEntity(entityTable,entityModel, entityNodes[nodeIdx].Position + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0), entityTable.Config.Speed)
+		end
+	end
+
+	-- Rebound finished
+
+	task.spawn(entityTable.Debug.OnEntityFinishedRebound,entityModel)
+
+	if cycle < cyclesConfig.Max then
+		task.wait(cyclesConfig.WaitTime)
+	end
+end
+-- Destroy
+
+if not entityModel:GetAttribute("NoAI") then
+	for _, v in next, entityConnections do
+		v:Disconnect()
+	end
+
+	entityModel:Destroy()
+	task.spawn(entityTable.Debug.OnEntityDespawned,entityModel)
+end
+
+
+
+
+Spawner.runJumpscare = function(config,Fullconfig)
+	-- Variables
+
+	local image1 = LoadCustomAsset(config.Image1)
+	local image2 = LoadCustomAsset(config.Image2)
+	local sound1, sound2 = nil, nil
+
+	if config.Sound1 then
+		sound1 = loadSound(config.Sound1,"Sound1"..Fullconfig.CustomName)
+	end
+
+	if config.Sound2 then
+		sound2 = loadSound(config.Sound2,"Sound2"..Fullconfig.CustomName)
+	end
+	if not config.Type then
+		Type="1"
+	else
+		Type = tostring(config.Type)
+	end
+
+	-- UI Construction
+
+	local JumpscareGui = Instance.new("ScreenGui")
+	local Background = Instance.new("Frame")
+	local Face = Instance.new("ImageLabel")
+
+	JumpscareGui.Name = "JumpscareGui"
+	JumpscareGui.IgnoreGuiInset = true
+	JumpscareGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Background.Name = "Background"
+	Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Background.BorderSizePixel = 0
+	Background.Size = UDim2.new(1, 0, 1, 0)
+	Background.ZIndex = 999
+
+	Face.Name = "Face"
+	Face.AnchorPoint = Vector2.new(0.5, 0.5)
+	Face.BackgroundTransparency = 1
+	Face.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Face.ResampleMode = Enum.ResamplerMode.Pixelated
+	Face.Size = UDim2.new(0, 150, 0, 150)
+	Face.Image = image1
+
+	Face.Parent = Background
+	Background.Parent = JumpscareGui
+	JumpscareGui.Parent = CG
+
+
+	-- Tease
+	local JumpscareContrast = Instance.new("ColorCorrectionEffect",game.Lighting)
+	local teaseConfig = config.Tease
+	local absHeight = JumpscareGui.AbsoluteSize.Y
+	local minTeaseSize = absHeight / 5
+	local maxTeaseSize = absHeight / 2.5
+	local Full = Instance.new("ImageLabel")
+	Full.Name = "Full"
+	Full.BackgroundTransparency = 1
+	Full.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Full.Size = UDim2.new(1.12197304, 0, 1.44743586, 0)
+	Full.ImageTransparency = 1
+	Full.Parent = Background
+	----------------------------------------------------------------------
+--[[    Gui's Effects
+]]
+
+	if Type == "pop" or Type ==  "2" then
+		JumpscareEnd=Face
+		Background.Transparency = 1
+		JumpscareEnd.Image = image2
+		game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position,Rotation = math.random(-20,20)}):Play()
+		game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+		task.wait(0.75)
+		JumpscareGui:Destroy()
+		Full:Destroy()
+		sound2:Play()
+		return "Effect Finished"
+	elseif Type == "endlessdoorsrebound" or Type ==  "3"  or Type == 'Rebound' then
+		JumpscareEnd=Face
+		Full.Size = UDim2.new(0.8, 0, 0.8, 0)
+		Background.Transparency = 1
+		JumpscareEnd.Image = image1
+		Full.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Full.Size = UDim2.new(0.03, 0, 0.05, 0)
+		game.TweenService:Create(JumpscareEnd,TweenInfo.new(0),{Size = Full.Size,Position = Full.Position}):Play()
+		task.wait(0.5)
+		JumpscareEnd.Image = image2
+		Full.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Full.Size = UDim2.new(0.8, 0, 0.8, 0)
+		game.TweenService:Create(JumpscareEnd,TweenInfo.new(0.5),{Size = Full.Size,Position = Full.Position}):Play()
+		game.TweenService:Create(JumpscareContrast,TweenInfo.new(10),{Brightness = 0,Contrast = 0,Saturation = 0,TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+		task.wait(0.75)
+		JumpscareGui:Destroy()
+		Full:Destroy()
+		sound2:Play()
+		return "Effect Finished"
+	else
+		if teaseConfig[1] then
+			local teaseAmount = math.random(teaseConfig.Min, teaseConfig.Max)
+
+			sound1:Play()
+
+			for _ = teaseConfig.Min, teaseAmount do
+				task.wait(math.random(100, 200) / 100)
+
+				local growFactor = (maxTeaseSize - minTeaseSize) / teaseAmount
+				Face.Size = UDim2.new(0, Face.AbsoluteSize.X + growFactor, 0, Face.AbsoluteSize.Y + growFactor)
 			end
 
-	end)
+			task.wait(math.random(100, 200) / 100)
+		end
+	end
+
+	-- Flashing
+
+	if config.Flashing[1] then
+		task.spawn(function()
+			while JumpscareGui.Parent do
+				Background.BackgroundColor3 = config.Flashing[2]
+				task.wait(math.random(25, 100) / 1000)
+				Background.BackgroundColor3 = Color3.new(0, 0, 0)
+				task.wait(math.random(25, 100) / 1000)
+			end
+		end)
+	end
+
+	-- Shaking
+
+	if config.Shake then
+		task.spawn(function()
+			local origin = Face.Position
+
+			while JumpscareGui.Parent do
+				Face.Position = origin + UDim2.new(0, math.random(-10, 10), 0, math.random(-10, 10))
+				Face.Rotation = math.random(-5, 5)
+
+				task.wait()
+			end
+		end)
+	end
+
+	-- Jumpscare
+	if Type == "Normal" or Type == "1" then
+		Face.Image = image2
+		Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
+		sound2:Play()
+
+		TS:Create(Face, TweenInfo.new(0.75), {Size = UDim2.new(0, absHeight * 3, 0,  absHeight * 3), ImageTransparency = 0.5}):Play()
+		task.wait(0.75)
+		JumpscareGui:Destroy()
+
+		if sound1 then
+			sound1:Destroy()
+		end
+
+		if sound2 then
+			sound2:Destroy()
+		end
+	else
+		Face.Image = image2
+		Face.Size = UDim2.new(0, maxTeaseSize, 0, maxTeaseSize)
+		sound2:Play()
+
+		TS:Create(Face, TweenInfo.new(0.75), {Size = UDim2.new(0, absHeight * 3, 0,  absHeight * 3), ImageTransparency = 0.5}):Play()
+		task.wait(0.75)
+		JumpscareGui:Destroy()
+
+		if sound1 then
+			sound1:Destroy()
+		end
+
+		if sound2 then
+			sound2:Destroy()
+		end
+	end
+end
+
+-- Scripts
+
+task.spawn(function()
+	while true do
+		local inSession = false
+
+		for _, v in next, workspace:GetChildren() do
+			if v.Name == "RushMoving" or v.Name == "AmbushMoving" or v:GetAttribute("IsCustomEntity") then
+				inSession = true
+				break
+			end
+		end
+
+		ReSt.GameData.ChaseInSession.Value = inSession
+		task.wait(0.5)
+	end
+
+end)
 
 -- Returns the Spawner
 return Spawner
