@@ -119,7 +119,7 @@ function dragEntity(entityTable,entityModel, pos, speed)
 			if diff.Magnitude > 0.1 then
 				if entityTable.Config.MovementDeath[1] then
 					if entityTable.Config.MovementDeath[2] == '1' then
-						if Hum.MoveDirection ~= Vector3.new(0,0,0) then
+						if Hum.MoveDirection ~= Vector3.new(0,0,0) and not Char:GetAttribute("IsDead") then
 							Spawner.SendingDie(entityTable,entityModel)
 						end
 					end 
@@ -263,11 +263,11 @@ Spawner.createEntity = function(config)
 			OnEntitySpawned = function() end,
 			OnEntityDespawned = function() end,
 			OnEntityStartMoving = function() end,
-		    OnEntityEnteredRoom = function() end,
+			OnEntityEnteredRoom = function() end,
 			OnLookAtEntity = function() end,
 			OnDeath = function() end,
 			NothidingKill = function() end,
-			OnEntityMoving = function() end,
+			OnEntityMoving = function() end
 		}
 	}
 
@@ -325,7 +325,7 @@ Spawner.runEntity = function(entityTable)
 	entityModel:SetPrimaryPartCFrame(entityNodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
 	entityModel.Parent = workspace
 
-	task.spawn(entityTable.Debug.OnEntitySpawned,entityModel)
+	task.spawn(entityTable.Debug.OnEntitySpawned)
 
 	-- Mute entity on spawn
 
@@ -403,15 +403,15 @@ Spawner.runEntity = function(entityTable)
 				local _, onScreen = WorldToViewportPoint(Camera, entityModel.PrimaryPart.Position)
 
 				if onScreen then
-					task.spawn(entityTable.Debug.OnLookAtEntity,entityModel)
+					task.spawn(entityTable.Debug.OnLookAtEntity)
 					if entityTable.Config.MovementDeath[1] then
-						if entityTable.Config.MovementDeath[2] == '2' then
+						if entityTable.Config.MovementDeath[2] == '2'  and Char:GetAttribute("IsDead") then
 							if Hum.MoveDirection ~= Vector3.new(0,0,0) then
 								Spawner.SendingDie(entityTable,entityModel)
 							end
 						end 
 					end
-					if entityTable.Config.DieOnLook then
+					if entityTable.Config.DieOnLook and not Char:GetAttribute("IsDead") then
 						Spawner.SendingDie(entityTable,entityModel)
 					end
 				end
@@ -423,7 +423,7 @@ Spawner.runEntity = function(entityTable)
 				Finding = Char.FindFirstChild(Char, "Crucifix")
 				if entityTable.Config.CanKill and not DiedChar  then
 					if entityTable.Config.AntiCrucifix and Finding then
-						task.spawn(entityTable.Debug.OnDeath,entityModel)
+						task.spawn(entityTable.Debug.OnDeath)
 						Hum.Health = 0
 						ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "Anti Crucifixs (Anti Cheat)"
 						firesignal(ReSt.Bricks.DeathHint.OnClientEvent, {"No Crucifixs (Or Ways of Invincibity) Are aloud With This Entity"})
@@ -438,10 +438,6 @@ Spawner.runEntity = function(entityTable)
 			end
 		end
 	end)
-
-
-
-	-- Char:GetAttribute("Hiding")
 	Spawner.SendingDie = function(entityTable,entityModel)
 		task.spawn(function()
 			Char:SetAttribute("IsDead", true)
@@ -463,7 +459,7 @@ Spawner.runEntity = function(entityTable)
 
 			-- Death handling
 
-			task.spawn(entityTable.Debug.OnDeath,entityModel)
+			task.spawn(entityTable.Debug.OnDeath)
 			Hum.Health = 0
 			ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
 			if entityTable.Config.DiffrentMessages then
@@ -545,13 +541,11 @@ Spawner.runEntity = function(entityTable)
 		end)
 	end
 
-end
-
-task.spawn(entityTable.Debug.OnEntityStartMoving,entityModel)
+task.spawn(entityTable.Debug.OnEntityStartMoving)
 
 -- Cycles
 
-local cyclesConfig = entityTable.Config.Cycles
+	local cyclesConfig = entityTable.Config.Cycles
 
 if entityTable.Config.BackwardsMovement then
 	local inverseNodes = {}
@@ -575,7 +569,7 @@ for cycle = 1, math.max(math.random(cyclesConfig.Min, cyclesConfig.Max), 1) do
 
 	-- Rebound finished
 
-	task.spawn(entityTable.Debug.OnEntityFinishedRebound,entityModel)
+	task.spawn(entityTable.Debug.OnEntityFinishedRebound)
 
 	if cycle < cyclesConfig.Max then
 		task.wait(cyclesConfig.WaitTime)
@@ -589,10 +583,10 @@ if not entityModel:GetAttribute("NoAI") then
 	end
 
 	entityModel:Destroy()
-	task.spawn(entityTable.Debug.OnEntityDespawned,entityModel)
+	task.spawn(entityTable.Debug.OnEntityDespawned)
 end
 
-
+end
 
 
 Spawner.runJumpscare = function(config,Fullconfig)
@@ -792,4 +786,16 @@ task.spawn(function()
 end)
 
 -- Returns the Spawner
+
+
+
+
+
+
+
 return Spawner
+
+
+
+
+
