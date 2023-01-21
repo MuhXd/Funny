@@ -1,8 +1,6 @@
 
 -- LOADS THEM FOR POEPLE
 return {
-{'Made By Muhammad'}
 {'TrollFace',"https://i.kym-cdn.com/photos/images/newsfeed/001/996/641/bc2.jpg"}
 {'Depth',"https://github.com/MuhXd/DoorSuff/blob/main/DoorsModes/Png.png?raw=true"}
-'Credit Me for the Random Painting when it's finished'
 }
