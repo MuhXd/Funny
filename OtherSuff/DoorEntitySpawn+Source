@@ -1,1 +1,4 @@
-loadstring(game:HttpGet('https://github.com/MuhXd/DoorSuff/blob/main/OtherSuff/DoorEntitySpawn+Source.lua?raw=true'))()
+loadstring(game:HttpGet('https://github.com/MuhXd/DoorSuff/blob/main/OtherSuff/DoorEntitySpawn%2BSource.lua?raw=true'))()
+
+-- Sends to Obfuscated Version
+
