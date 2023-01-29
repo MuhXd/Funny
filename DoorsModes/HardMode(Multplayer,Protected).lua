@@ -310,12 +310,10 @@ if PlayersIngame > 1 then -- if more then one then waits for link
     Gui("HardMode","+1000","Hard Mode (Doesn't add Nobs)")
 
     print("Loaded, Wating to Link to Multplayer") -- waiting to link
-     L = game:GetService("Workspace").CurrentRooms[0].PathfindNodes:Clone()
-    L.Parent = game:GetService("Workspace").CurrentRooms[0]
-    L.Name = 'Nodes'
+
 game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function(v)
-    L = game:GetService("Workspace").CurrentRooms[v+1].PathfindNodes:Clone()
-    L.Parent = game:GetService("Workspace").CurrentRooms[v+1]
+    L = game:GetService("Workspace").CurrentRooms[v].PathfindNodes:Clone()
+    L.Parent = game:GetService("Workspace").CurrentRooms[v]
     L.Name = 'Nodes'
 end)
     
