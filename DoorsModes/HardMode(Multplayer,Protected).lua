@@ -310,6 +310,15 @@ if PlayersIngame > 1 then -- if more then one then waits for link
     Gui("HardMode","+1000","Hard Mode (Doesn't add Nobs)")
 
     print("Loaded, Wating to Link to Multplayer") -- waiting to link
+     L = game:GetService("Workspace").CurrentRooms[0].PathfindNodes:Clone()
+    L.Parent = game:GetService("Workspace").CurrentRooms[0]
+    L.Name = 'Nodes'
+game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function(v)
+    L = game:GetService("Workspace").CurrentRooms[v+1].PathfindNodes:Clone()
+    L.Parent = game:GetService("Workspace").CurrentRooms[v+1]
+    L.Name = 'Nodes'
+end)
+    
     c=1
 
     repeat task.wait()
@@ -322,6 +331,7 @@ if PlayersIngame > 1 then -- if more then one then waits for link
         --Kill=true
     until game:GetService("ReplicatedStorage").GameData.LatestRoom.Value > 0
     print("Linked to Clients") -- linked
+    
     game.StarterGui:SetCore("ChatMakeSystemMessage", {
         Text = "Linked To Clients",
         Color = Color3.fromRGB(0, 255, 0),
