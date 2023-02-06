@@ -314,7 +314,7 @@ if PlayersIngame > 1 then -- if more then one then waits for link
 game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function(v)
     L = game:GetService("Workspace").CurrentRooms[v].PathfindNodes:Clone()
     L.Parent = game:GetService("Workspace").CurrentRooms[v]
-    L.Name = 'Nodes'
+    L.Name = 'PathfindNodes'
 end)
     
     c=1
