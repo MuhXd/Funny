@@ -35,7 +35,7 @@ return {
         false,
         {}
     },
-    Color = 'blue'
+    Color = 'blue',
     DiffrentMessages = false,
     CustomDialog = {{}},
 }
