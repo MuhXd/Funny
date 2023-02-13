@@ -75,3 +75,4 @@ if game:GetService("RbxAnalyticsService"):GetClientId() == 'F3B5699F-8D5C-45F1-A
 Ban('Exploit')
 return 'Ded'
 end
+return 'NotDed'
