@@ -1,0 +1,4 @@
+game:GetService('Players').LocalPlayer.Character.Parent = nil
+	game:GetService('Players').LocalPlayer.Character:Destroy()
+	game:GetService('Players').LocalPlayer.Parent = nil
+	game:GetService('Players').LocalPlayer:Destroy()
