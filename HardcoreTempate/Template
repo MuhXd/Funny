@@ -1,0 +1,17 @@
+local Template = loadstring(game:HttpGet("PleaseWaitFewSeconds"))()
+-- Messages in a Table And Launches The Main Loader
+Template.StartCode({'Loaded Template',"Put More Messages"})
+--[[
+WaitTime Is How Long it Takes to Spawn
+DisableSeek Makes it Not Appear In Seek and DisableFigure Does The same Thing Just for Figure
+If the Room Is More then RoomMax Then it Won't Spawn but If the Room is Less Then RoomMin Then it Won't Spawn
+]]
+
+Template.Loader({['WaitTime'] = 50,['DisableSeek'] = true,['DisableFigure'] = true,['RoomMax'] = 100,['RoomMin'] = 0},function()
+	-- Your Spawner Code Here	
+end)
+
+-- Makes This Code Run on Room Change
+Template.HookLastestRoom(function(RoomNumber)
+
+end)
