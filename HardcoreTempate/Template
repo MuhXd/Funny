@@ -1,4 +1,4 @@
-local Template = loadstring(game:HttpGet("https://github.com/MuhXd/DoorSuff/blob/main/HardcoreTempate/TemplateCode.lua"))()
+local Template = loadstring(game:HttpGet("https://github.com/MuhXd/DoorSuff/blob/main/HardcoreTempate/TemplateCode.lua?raw=true"))()
 -- Messages in a Table And Launches The Main Loader
 Template.StartCode({'Loaded Template',"Put More Messages"})
 --[[
