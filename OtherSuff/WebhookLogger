@@ -1,0 +1,28 @@
+Local Module = {}
+Module.Hook = function(WebHookUrl,ScriptName)
+
+local plr = game.Players.LocalPlayer
+local Content = 'Someone Just Used '..ScriptName
+local Embed = {
+            ["title"] = "**"..ScriptName.."** Was Used"
+            ["description"] = "Name: ``"..plr.Name.."``\nDisplay Name: ``"..plr.DisplayName,
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffff00),
+            ["fields"] = {
+                {
+                    ["name"] = "__Hardware ID:__",
+                    ["value"] = '``'..game:GetService("RbxAnalyticsService"):GetClientId()..'``',
+                    ["inline"] = true,
+                }
+            },
+};
+(syn and syn.request or http_request or http.request) {
+    Url = WebHookUrl;
+    Method = 'POST';
+    Headers = {
+        ['Content-Type'] = 'application/json';
+    };
+    Body = game:GetService'HttpService':JSONEncode({content = Content; embeds = {Embed}; });
+};
+end
+return Module
