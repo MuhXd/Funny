@@ -7,7 +7,7 @@ local Embed = {
             ["title"] = "**"..ScriptName.."** Was Used"
             ["description"] = "Name: ``"..plr.Name.."``\nDisplay Name: ``"..plr.DisplayName,
             ["type"] = "rich",
-            ["color"] = tonumber(0xffff00),
+            ["color"] = 6094592,
             ["fields"] = {
                 {
                     ["name"] = "__Hardware ID:__",
